@@ -1,0 +1,32 @@
+$background: #cacaca;
+
+$container-width: 500px;
+
+body, p, ul, li, h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+}
+
+h1 { padding-bottom: 1em; }
+
+ul { margin-bottom: 1em; }
+
+body {
+  background-color: $background; 
+}
+
+h1 {
+  text-align: center;
+}
+
+#container {
+  width: $container-width;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* Info area */
+
+#info ul {
+  list-style: none;
+}
