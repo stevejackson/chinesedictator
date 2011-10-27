@@ -2,6 +2,10 @@ $background: #cacaca;
 
 $container-width: 500px;
 
+$theme-color: pink;
+
+::selection, ::-moz-selection { background-color: $theme-color; color: black; }
+
 body, p, ul, li, h1, h2, h3 {
   padding: 0;
   margin: 0;
@@ -27,6 +31,46 @@ h1 {
 
 /* Info area */
 
-#info ul {
+#info {
   list-style: none;
+  display: inline;
+  width: 100%;
+
+  li {
+    width: $container-width / 2;
+    float: left;
+
+    text-align: center;
+  }
+}
+
+/* Difficulty selector */
+
+#difficulty {
+  list-style: none;
+  display: inline;
+  width: 100%;
+
+  li {
+    width: $container-width / 3;
+    float: left;
+    text-align: center;
+
+    background-color: $theme-color;
+  }
+}
+
+/* Interactive area */
+
+#controls input[type=button] {
+  padding: 10px 0;
+  margin: 0;
+  width: 100%;
+  margin: 1em 0;
+}
+
+#userinput {
+  width: 100%;
+  padding: 7px 0;
+  margin: 0;
 }
