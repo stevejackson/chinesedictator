@@ -25,4 +25,5 @@ gem 'jquery-rails'
 
 group :test do
   gem 'turn', :require => false
+  gem 'jasmine-rails'
 end
