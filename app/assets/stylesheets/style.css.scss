@@ -4,6 +4,7 @@ $container-width: 500px;
 
 $theme-color: pink;
 
+.clear { clear: both; }
 ::selection, ::-moz-selection { background-color: $theme-color; color: black; }
 
 body, p, ul, li, h1, h2, h3 {
@@ -16,7 +17,7 @@ h1 { padding-bottom: 1em; }
 ul { margin-bottom: 1em; }
 
 body {
-  background-color: $background; 
+  background-color: $background;
 }
 
 h1 {
@@ -43,6 +44,9 @@ h1 {
     text-align: center;
   }
 }
+
+#infocontent { display: none; }
+#aboutcontent { display: none; }
 
 /* Difficulty selector */
 
@@ -73,5 +77,13 @@ h1 {
   width: 100%;
   padding: 7px 0;
   margin: 0;
+}
+
+.correct {
+  border: 1px solid green;
+}
+
+.incorrect {
+  border: 1px solid red;
 }
 

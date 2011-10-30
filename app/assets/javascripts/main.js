@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+  $('#info .about').click(function() {
+    $('#helpcontent').hide();
+    $('#aboutcontent').toggle();
+  });
+  $('#info .help').click(function() {
+    $('#aboutcontent').hide();
+    $('#helpcontent').toggle();
+  });
+
   $('#userinput').focus();
 
   $('.play').click(function() {
@@ -10,11 +19,20 @@ $(document).ready(function() {
 
   $('#userinput').keypress(function(event) {
     var dic = new Dictator();
-    dic.dictations = new Array("testery!");
+    dic.dictations = new Array("你好");
     var userinput = $(this).val();
+
     dic.analyze(userinput);
-    alert(userinput);
-    alert(dic.completed);
+
+    // update indicator on whether or not we're successful
+    if(dic.completed) {
+      $('#userinput').removeClass('incorrect');
+      $('#userinput').addClass('correct');
+    }
+    else {
+      $('#userinput').removeClass('correct');
+      $('#userinput').addClass('incorrect');
+    }
   });
 
 });

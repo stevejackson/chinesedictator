@@ -20,12 +20,33 @@ Dictator.prototype.analyze = function(input) {
 
   function compareStringsByChar(string1, string2) {
     var i = 0;
+    var returnArray = new Array(1);
+
+    if(string1.length == 0 && string2.length > 0) {
+      returnArray[0] = 'false';
+      return returnArray;
+    }
+
+    var furthest = 0;
     for(i = 0; i < string1.length; i++) {
       if(string1.charAt(i) != string2.charAt(i)) {
-        return i;
+        var failureIndex = new Array(1);
+        failureIndex[0] = i + 1;
+        return failureIndex;
       }
+      furthest = i;
     }
-    return true;
+
+    // if they're correct so far, but don't have enough...
+    if(string1.length < string2.length) {
+      var failureIndex = new Array(1);
+      failureIndex[0] = furthest + 1;
+      return failureIndex;
+    }
+
+    returnArray[0] = 'true';
+
+    return returnArray;
   }
 
   // sanitize the input. we don't care about their punctuation.
@@ -36,13 +57,13 @@ Dictator.prototype.analyze = function(input) {
     sanitizedSentence = sanitize(this.dictations[i]);
 
     var comparison = compareStringsByChar(sanitizedInput, sanitizedSentence);
-    if(comparison == true) {
+    if(comparison[0] == 'true') {
       this.completed = true;
       return true;
     }
-    else {
-      this.failureIndex = comparison + sanitizationsUpToIndex(input, comparison);
-    }
+
+    this.failureIndex = comparison[0] + sanitizationsUpToIndex(input, comparison);
+
   }
 
 };
