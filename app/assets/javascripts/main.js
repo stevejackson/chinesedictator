@@ -17,7 +17,7 @@ $(document).ready(function() {
 
   });
 
-  $('#userinput').keypress(function(event) {
+  $('#userinput').keyup(function() {
     var dic = new Dictator();
     dic.dictations = new Array("你好");
     var userinput = $(this).val();
