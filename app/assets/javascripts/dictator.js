@@ -8,7 +8,7 @@ Dictator.prototype.analyze = function(input) {
   this.complete = false;
 
   function sanitize(input) {
-    var sanitized = input.replace(/[\?|\!|\,|\.| ]/gi, '');
+    var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。]/gi, '');
     return sanitized.toLowerCase();
   }
 

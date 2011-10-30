@@ -23,6 +23,13 @@ describe("Dictator", function() {
     expect(dictator.completed).toBeTruthy();
   });
   
+  it("should compare an input ignoring extraneous chinese punctuation [？！，。]", function() {
+    dictator.dictations = new Array("stewie doc");
+    dictator.analyze("stew？！。  ie, d，oc");
+
+    expect(dictator.completed).toBeTruthy();
+  });
+
   it("should ignore case", function() {
     dictator.dictations = new Array("Stewie DoC");
     dictator.analyze("stewiE doc");
