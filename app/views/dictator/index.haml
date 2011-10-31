@@ -24,13 +24,19 @@
 
 %audio#audio{:src => 'http://s3contents.chinesepod.com/1656/3532560445875c8ec035e0a5d75ed06ed7f81c58/mp3/64/chinesepod_5832_dialogue_50881_prototype_2276.mp3' }
 
+#question
+  = render :partial => '/dictator/question'
+
 #controls
   %input.play{ :type => 'button', :value => 'Play' }
 
 #notification
+
+#question
 
 %input#userinput{ :type => 'text' }
 
 #flash
 
 #graph
+

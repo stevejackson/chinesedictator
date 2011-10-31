@@ -4,12 +4,11 @@ $(document).ready(function() {
     $('#helpcontent').hide();
     $('#aboutcontent').toggle();
   });
+
   $('#info .help').click(function() {
     $('#aboutcontent').hide();
     $('#helpcontent').toggle();
   });
-
-  $('#userinput').focus();
 
   $('.play').click(function() {
 
@@ -17,16 +16,25 @@ $(document).ready(function() {
 
   });
 
-  $(document).keypress(function(event) {
-    if(event.which == 13) {
-      alert("oh shit");
-    }
+
+  newQuestion();
+
+});
+
+function newQuestion() {
+  $('#userinput').focus();
+
+  $('#userinput').unbind('keyup');
+  $('#userinput').keyup(function(event) {
+    analyze();
   });
 
-  $('#userinput').keyup(function() {
+  analyze();
+
+  function analyze() {
     var dic = new Dictator();
-    dic.dictations = new Array("你好");
-    var userinput = $(this).val();
+    dic.dictations = getTranslations();
+    var userinput = $('#userinput').val();
 
     dic.analyze(userinput);
 
@@ -40,12 +48,36 @@ $(document).ready(function() {
     else {
       $('#userinput').removeClass('correct');
       $('#userinput').addClass('incorrect');
-    }
-  });
 
-  function showCompletionNotification() {
-    $('#notification').show();
-    $('#notification').html('<p>test</p>');
+      hideCompletion();
+    }
   }
 
-});
+  function getTranslations() {
+    var translations = [];
+
+    $('#question .translation .sentence').each(function() {
+      translations.push($(this).text());
+    });
+
+    return translations;
+  }
+}
+
+function showCompletionNotification() {
+  $('#question').show();
+  
+  // Now they can press enter to move onto the next question.
+  $(document).keypress(function(event) {
+    if(event.which == 13) {
+      alert('ok');
+      $('#userinput').val('');
+      $.ajax('/question?difficulty=1');
+    }
+  });
+}
+
+function hideCompletion() {
+  $('#question').hide();
+  $(document).unbind('keypress');
+}
