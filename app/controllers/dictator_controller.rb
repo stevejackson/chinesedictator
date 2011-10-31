@@ -5,7 +5,8 @@ class DictatorController < ApplicationController
 
   def question
     difficulty = params[:difficulty].to_i
-    question = Question.where(:difficulty => difficulty)
+
+    question = Question.first(:order => "RANDOM()")
 
     session[:question] = question
   end

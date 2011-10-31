@@ -4,12 +4,16 @@ describe Question do
 
   before :each do
     @q1 = Factory :question
+    @translation = Factory :translation
   end
 
-  it "should load translations for a question" do
-    #pinyin = Factory :translation, :question => @q1
-  
+  it "should have a translation" do
+    @q1.should respond_to :translations
   end
 
+  it "should have data" do
+    @q1.should respond_to :difficulty
+    @q1.should respond_to :sentence
+  end
 
 end
