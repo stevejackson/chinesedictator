@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DictatorController do
 
   before :each do
-    @question = Factory :question
+    @question = Factory :question1
   end
   
   it "should load a question on visiting root" do

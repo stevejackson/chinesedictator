@@ -1,0 +1,7 @@
+.sentence= @question.sentence
+.difficulty= @question.difficulty
+-if not @question.translations.nil?
+  -@question.translations.each do |t|
+    .translation
+      .language= t.language
+      .sentence= t.sentence
