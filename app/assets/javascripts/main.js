@@ -17,6 +17,12 @@ $(document).ready(function() {
 
   });
 
+  $(document).keypress(function(event) {
+    if(event.which == 13) {
+      alert("oh shit");
+    }
+  });
+
   $('#userinput').keyup(function() {
     var dic = new Dictator();
     dic.dictations = new Array("你好");
@@ -28,11 +34,18 @@ $(document).ready(function() {
     if(dic.completed) {
       $('#userinput').removeClass('incorrect');
       $('#userinput').addClass('correct');
+
+      showCompletionNotification();
     }
     else {
       $('#userinput').removeClass('correct');
       $('#userinput').addClass('incorrect');
     }
   });
+
+  function showCompletionNotification() {
+    $('#notification').show();
+    $('#notification').html('<p>test</p>');
+  }
 
 });
