@@ -10,6 +10,7 @@ describe Question do
   it "should have data" do
     @q1.should respond_to :difficulty
     @q1.should respond_to :sentence
+    @q1.should respond_to :uri
   end
 
   it "should get associated translations" do

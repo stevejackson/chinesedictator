@@ -3,6 +3,7 @@
 Factory.define :question1, :class => Question do |q|
   q.sentence "Hello"
   q.difficulty 1
+  q.uri "testing/test.mp3"
 end
 
 Factory.define :translation1, :class => Translation do |t|
@@ -20,6 +21,7 @@ end
 Factory.define :question2, :class => Question do |q|
   q.sentence "How are you?"
   q.difficulty 1
+  q.uri "testing/test2.mp3"
 end
 
 Factory.define :translation2, :class => Translation do |t|

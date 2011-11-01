@@ -3,5 +3,5 @@ class Question < ActiveRecord::Base
 
   scope :translations, where(:all).includes(:translations)
 
-  attr_accessible :sentence, :difficulty
+  attr_accessible :sentence, :difficulty, :uri
 end
