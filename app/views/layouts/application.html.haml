@@ -12,10 +12,14 @@
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <script type="text/javascript" src="http://use.typekit.com/dfh6fwt.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
   %body
    
     #container
-      = yield
+      #innercontainer
+        = yield
  
     <script type="text/javascript">
     var _gaq = _gaq || [];

@@ -1,42 +1,49 @@
-%h1 Chinese Dictator 中文
+%h1
+  %a{ :href => '/' } Chinese Dictator 中文
 
-%ul#info
-  %li.help
-    Help
-  %li.about
-    About
-
-#helpcontent
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta ultrices urna et blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros ac est luctus auctor. Donec vel ligula eget turpis varius imperdiet. Fusce euismod eros ut purus bibendum id tempus nisi sagittis. Nullam rutrum sapien id mauris tincidunt pulvinar. Integer vitae velit ipsum. Quisque risus velit, consequat non auctor ut, congue in risus. Sed mi nisl, porttitor adipiscing elementum vel, blandit dapibus sapien. Sed nec leo dolor.  
-
-#aboutcontent
-  Duis non turpis nisi. Praesent sodales tortor a est vulputate feugiat. Nam egestas tellus ac erat sollicitudin id aliquet nunc scelerisque. Etiam interdum nisi ut dolor consequat ac consequat nisl viverra. Nullam nisl lectus, fringilla nec tristique vel, semper vitae turpis. Integer sollicitudin feugiat tincidunt. Curabitur et pretium ligula. In interdum ornare nisl nec fringilla. Aenean eget elit nunc. Sed pharetra cursus posuere. Nunc ultrices euismod nibh, vel sagittis lacus lobortis nec. Curabitur elit leo, posuere in faucibus at, euismod ac felis. In hac habitasse platea dictumst. Vestibulum consectetur iaculis vestibulum. Aliquam vestibulum mattis nunc eu hendrerit.  
+%nav 
+  %ul#info
+    %li.learn
+      %a{ :href => '#learn' }
+        LEARN
+    %li.faq
+      %a{ :href => '#faq' }
+        FAQ
+    %li.help
+      %a{ :href => '#help' }
+        HELP
+    %li.about
+      %a{ :href => '#about' }
+        ABOUT
 
 .clear
 
-%ul#difficulty
-  %li
-    %a{ :href => '#' } Easy
-  %li
-    %a{ :href => '#' } Medium
-  %li
-    %a{ :href => '#' } Hard
+#learn.section
+  %ul#difficulty
+    %li
+      %a{ :href => '#' } Easy
+    %li
+      %a{ :href => '#' } Medium
+    %li
+      %a{ :href => '#' } Hard
 
-%audio#audio{:src => 'http://s3contents.chinesepod.com/1656/3532560445875c8ec035e0a5d75ed06ed7f81c58/mp3/64/chinesepod_5832_dialogue_50881_prototype_2276.mp3' }
+  #question
+    = render :partial => '/dictator/question'
 
-#question
-  = render :partial => '/dictator/question'
+  #controls
+    %input.play{ :type => 'button', :value => 'Play' }
 
-#controls
-  %input.play{ :type => 'button', :value => 'Play' }
+  #notification
 
-#notification
+  #question
 
-#question
+  %input#userinput{ :type => 'text' }
 
-%input#userinput{ :type => 'text' }
+  #flash
 
-#flash
+#help.section
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta ultrices urna et blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros ac est luctus auctor. Donec vel ligula eget turpis varius imperdiet. Fusce euismod eros ut purus bibendum id tempus nisi sagittis. Nullam rutrum sapien id mauris tincidunt pulvinar. Integer vitae velit ipsum. Quisque risus velit, consequat non auctor ut, congue in risus. Sed mi nisl, porttitor adipiscing elementum vel, blandit dapibus sapien. Sed nec leo dolor.  
 
-#graph
+#about.section
+  Duis non turpis nisi. Praesent sodales tortor a est vulputate feugiat. Nam egestas tellus ac erat sollicitudin id aliquet nunc scelerisque. Etiam interdum nisi ut dolor consequat ac consequat nisl viverra. Nullam nisl lectus, fringilla nec tristique vel, semper vitae turpis. Integer sollicitudin feugiat tincidunt. Curabitur et pretium ligula. In interdum ornare nisl nec fringilla. Aenean eget elit nunc. Sed pharetra cursus posuere. Nunc ultrices euismod nibh, vel sagittis lacus lobortis nec. Curabitur elit leo, posuere in faucibus at, euismod ac felis. In hac habitasse platea dictumst. Vestibulum consectetur iaculis vestibulum. Aliquam vestibulum mattis nunc eu hendrerit.  
 

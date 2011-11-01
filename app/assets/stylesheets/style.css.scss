@@ -1,26 +1,41 @@
-$background: #cacaca;
+$background: #0d0d0d;
 
 $container-width: 500px;
 
-$theme-color: pink;
+$theme-color-bright: #e20203;
+$theme-color-dark: #7e0203;
+
+$link-color: white;
 
 .clear { clear: both; }
-::selection, ::-moz-selection { background-color: $theme-color; color: black; }
+::selection, ::-moz-selection { background-color: $theme-color-bright; color: black; }
 
 body, p, ul, li, h1, h2, h3 {
   padding: 0;
   margin: 0;
 }
 
-h1 { padding-bottom: 1em; }
+h1 { padding-bottom: 0.5; }
 
 ul { margin-bottom: 1em; }
 
 body {
   background-color: $background;
+  font-family: ff-dagny-web-pro;
+  color: white;
+}
+
+a, a:visited {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $theme-color-bright;
+  }
 }
 
 h1 {
+  font-size: 3em;
   text-align: center;
 }
 
@@ -30,7 +45,24 @@ h1 {
   padding: 10px;
 }
 
+#innercontainer {
+  width: 120000px;
+}
+
+/* Section-scrolling */
+
+.section {
+  width: 5000px;
+  float: left;
+}
+
 /* Info area */
+
+nav {
+  display: block;
+  height: 50px;
+  border-bottom: 4px solid $theme-color-bright;
+}
 
 #info {
   list-style: none;
@@ -38,10 +70,29 @@ h1 {
   width: 100%;
 
   li {
-    width: $container-width / 2;
+    width: $container-width / 4;
     float: left;
+    height: 2em;
 
+    font-size: 1.3em;
+    font-weight: bold;
     text-align: center;
+
+    &:hover {
+      background: $theme-color-bright;
+    }
+  
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-top: 7px;
+
+      &:hover {
+        color: white;
+      }
+    }
+    
   }
 }
 
@@ -60,7 +111,11 @@ h1 {
     float: left;
     text-align: center;
 
-    background-color: $theme-color;
+    &:hover { background-color: $theme-color-bright; }
+
+    a:hover {
+      color: white;
+    }
   }
 }
 
@@ -75,16 +130,17 @@ h1 {
 
 #userinput {
   width: 100%;
-  padding: 7px 0;
+  padding: 7px 5px;
   margin: 0;
+  font-size: 1.2em;
 }
 
 .correct {
-  border: 1px solid green;
+  border: 3px solid green;
 }
 
 .incorrect {
-  border: 1px solid red;
+  border: 3px solid red;
 }
 
 #question { display: none; }

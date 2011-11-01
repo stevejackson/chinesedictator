@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  // horizontal scrolling
+  $('ul.nav a').click(function(event) {
+    $('#innercontainer').stop().animate({
+      scrollLeft: $($anchor.attr('href')).offset().left
+    }, 1000);
+    event.preventDefault();
+  });
+
   $('#info .about').click(function() {
     $('#helpcontent').hide();
     $('#aboutcontent').toggle();
