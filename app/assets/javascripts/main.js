@@ -1,21 +1,15 @@
 $(document).ready(function() {
 
   // horizontal scrolling
-  $('ul.nav a').click(function(event) {
-    $('#innercontainer').stop().animate({
-      scrollLeft: $($anchor.attr('href')).offset().left
-    }, 1000);
+  //$('.section').scrollable().navigator();
+  $('nav a').click(function(event) {
+
+    var anchor_location = $($(this).attr('href')).offset().left;
+
     event.preventDefault();
-  });
 
-  $('#info .about').click(function() {
-    $('#helpcontent').hide();
-    $('#aboutcontent').toggle();
-  });
+    $('#contentBoxMain').scrollTo($($(this).attr('href')), 1000);
 
-  $('#info .help').click(function() {
-    $('#aboutcontent').hide();
-    $('#helpcontent').toggle();
   });
 
   $('.play').click(function() {
@@ -23,7 +17,6 @@ $(document).ready(function() {
     $('#audio').get(0).play();
 
   });
-
 
   newQuestion();
 

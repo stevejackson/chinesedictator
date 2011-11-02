@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require 'jquery.tools.min'
+//= require 'dictator'
+//= require 'main'
 //= require_tree .

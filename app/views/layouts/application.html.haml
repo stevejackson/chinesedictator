@@ -4,7 +4,10 @@
     %title Chinese Dictator
 
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'jquery.scrollTo-min'
+    = javascript_include_tag 'dictator'
+    = javascript_include_tag 'main'
 
     = csrf_meta_tag
 
@@ -17,10 +20,30 @@
 
   %body
    
-    #container
-      #innercontainer
+    .centeredContainer
+      .container
+        %h1
+          %a{ :href => '/' } Chinese Dictator 中文
+
+        %nav 
+          %ul#info
+            %li.learn
+              %a{ :href => '#learn' }
+                LEARN
+            %li.faq
+              %a{ :href => '#faq' }
+                FAQ
+            %li.help
+              %a{ :href => '#help' }
+                HELP
+            %li.about
+              %a{ :href => '#about' }
+                ABOUT
+
+    #contentBoxMain
+      #contentScroll
         = yield
- 
+
     <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-2995032-4']);

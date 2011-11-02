@@ -1,5 +1,6 @@
 $background: #0d0d0d;
 
+$scroll-container-width: 500px;
 $container-width: 500px;
 
 $theme-color-bright: #e20203;
@@ -39,20 +40,32 @@ h1 {
   text-align: center;
 }
 
-#container {
+.container {
   width: $container-width;
   margin: 0 auto;
   padding: 10px;
 }
 
-#innercontainer {
-  width: 120000px;
-}
-
 /* Section-scrolling */
 
+#contentBoxMain, .centeredContainer {
+  width: $scroll-container-width; 
+  margin: 0 auto;
+  overflow: hidden;
+}
+.contentBox {
+  width: $scroll-container-width;
+  overflow: hidden;
+}
+
+#contentScroll {
+  overflow: auto;
+  width: 10000px;
+  height: 500px;
+}
+  
 .section {
-  width: 5000px;
+  width: 2000px;
   float: left;
 }
 
@@ -95,9 +108,6 @@ nav {
     
   }
 }
-
-#helpcontent { display: none; }
-#aboutcontent { display: none; }
 
 /* Difficulty selector */
 
