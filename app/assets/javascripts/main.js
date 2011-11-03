@@ -4,11 +4,9 @@ $(document).ready(function() {
   //$('.section').scrollable().navigator();
   $('nav a').click(function(event) {
 
-    var anchor_location = $($(this).attr('href')).offset().left;
-
     event.preventDefault();
 
-    $('#contentBoxMain').scrollTo($($(this).attr('href')), 1000);
+    $('#contentBoxMain').stop().scrollTo($($(this).attr('href')), 1000);
 
   });
 
@@ -27,6 +25,7 @@ function newQuestion() {
 
   $('#userinput').unbind('keyup');
   $('#userinput').keyup(function(event) {
+    alert('test');
     analyze();
   });
 
@@ -38,6 +37,7 @@ function newQuestion() {
     var userinput = $('#userinput').val();
 
     dic.analyze(userinput);
+    alert("here");
 
     // update indicator on whether or not we're successful
     if(dic.completed) {
@@ -52,6 +52,13 @@ function newQuestion() {
 
       hideCompletion();
     }
+
+    // display our percent progress and shit
+    var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
+
+    $('#progress').html("<br/>" + dic.failureIndex + "-" + 
+    sanitizedTargetLength + 
+    "<br/>" + dic.dictationTarget);
   }
 
   function getTranslations() {
@@ -71,7 +78,6 @@ function showCompletionNotification() {
   // Now they can press enter to move onto the next question.
   $(document).keypress(function(event) {
     if(event.which == 13) {
-      alert('ok');
       $('#userinput').val('');
       $.ajax('/question?difficulty=1');
     }
