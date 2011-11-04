@@ -71,7 +71,16 @@ h1 {
 
 /* Info area */
 
+#navigator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: $theme-color-bright;
+  z-index: -1;
+}
+
 nav {
+  position: relative;
   display: block;
   height: 50px;
   border-bottom: 4px solid $theme-color-bright;
@@ -92,7 +101,7 @@ nav {
     text-align: center;
 
     &:hover {
-      background: $theme-color-bright;
+      //background: $theme-color-bright;
     }
   
     a {
@@ -154,3 +163,15 @@ nav {
 }
 
 #question { display: none; }
+
+#progressBar {
+  position: relative;
+  width: $container-width;
+  height: 2em;
+}
+.pbLabel {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 2em;
+}

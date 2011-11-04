@@ -5,6 +5,7 @@
 
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'jquery'
+    = javascript_include_tag 'jquery-ui'
     = javascript_include_tag 'jquery.scrollTo-min'
     = javascript_include_tag 'dictator'
     = javascript_include_tag 'main'
@@ -26,6 +27,7 @@
           %a{ :href => '/' } Chinese Dictator 中文
 
         %nav 
+          #navigator
           %ul#info
             %li.learn
               %a{ :href => '#learn' }

@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+  menuNavigator();
+
+  //progress bar set up
+  $('#progressBar').progressbar({
+  });
+
   // horizontal scrolling
   //$('.section').scrollable().navigator();
   $('nav a').click(function(event) {
@@ -20,12 +26,20 @@ $(document).ready(function() {
 
 });
 
+function menuNavigator() {
+  $('nav li').hover(function() {
+    $('#navigator').stop().animate({
+      left: $(this).position().left,
+      width: $(this).width()
+    });
+  });
+}
+
 function newQuestion() {
   $('#userinput').focus();
 
   $('#userinput').unbind('keyup');
   $('#userinput').keyup(function(event) {
-    alert('test');
     analyze();
   });
 
@@ -37,7 +51,6 @@ function newQuestion() {
     var userinput = $('#userinput').val();
 
     dic.analyze(userinput);
-    alert("here");
 
     // update indicator on whether or not we're successful
     if(dic.completed) {
@@ -53,12 +66,11 @@ function newQuestion() {
       hideCompletion();
     }
 
-    // display our percent progress and shit
+    // update progress bar
     var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
-
-    $('#progress').html("<br/>" + dic.failureIndex + "-" + 
-    sanitizedTargetLength + 
-    "<br/>" + dic.dictationTarget);
+    var percentage = parseInt((dic.failureIndex / sanitizedTargetLength) * 100);
+    $('#progressBar').progressbar("option", "value", percentage);
+    $('.pbLabel').text(percentage + "%");
   }
 
   function getTranslations() {
