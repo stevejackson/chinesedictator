@@ -21,7 +21,40 @@
 
   %body
    
-    .centeredContainer
+    %header
+      .centeredContainer
+        .topOptions
+          .language
+            English | 汉语
+          .twitter
+            %a{ :href => 'http://twitter.com/_sjackson' }
+              Follow me on Twitter.
+
+        .logo
+          %h1
+            %a{ :href => '/' } Chinese Dictator 中文
+
+        %nav 
+          #navigator
+          %ul#info
+            %li.learn
+              %a.selected{ :href => '#learn' }
+                LEARN
+            %li.faq
+              %a{ :href => '#faq' }
+                FAQ
+            %li.help
+              %a{ :href => '#help' }
+                HELP
+            %li.about
+              %a{ :href => '#about' }
+                ABOUT
+
+
+        
+    
+
+    -#.centeredContainer
       .container
         %h1
           %a{ :href => '/' } Chinese Dictator 中文

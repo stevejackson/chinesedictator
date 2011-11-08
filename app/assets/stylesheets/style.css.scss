@@ -1,4 +1,4 @@
-$background: #0d0d0d;
+$background: #eee;
 
 $scroll-container-width: 500px;
 $container-width: 500px;
@@ -7,6 +7,12 @@ $theme-color-bright: #e20203;
 $theme-color-dark: #7e0203;
 
 $link-color: white;
+
+@mixin dropshadow($p1, $p2, $p3, $color) {
+  -moz-box-shadow: $p1 $p2 $p3 $color;
+  -webkit-box-shadow: $p1 $p2 $p3 $color;
+  box-shadow: $p1 $p2 $p3 $color;
+}
 
 .clear { clear: both; }
 ::selection, ::-moz-selection { background-color: $theme-color-bright; color: black; }
@@ -44,6 +50,24 @@ h1 {
   width: $container-width;
   margin: 0 auto;
   padding: 10px;
+}
+
+/* header */
+
+header {
+  background: yellow;
+  @include dropshadow(5px, 5px, 5px, #a7a7a7);
+}
+
+header .language {
+  float: left;
+  width: 50%;
+}
+
+header .twitter {
+  float: right;
+  width: 50%;
+  text-align: right;
 }
 
 /* Section-scrolling */
