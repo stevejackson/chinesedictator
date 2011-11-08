@@ -14,6 +14,8 @@ $(document).ready(function() {
 
     $('#contentBoxMain').stop().scrollTo($($(this).attr('href')), 1000);
 
+    // mark this as the currently selected item
+    makeMenuSelection($(this));
   });
 
   $('.play').click(function() {
@@ -26,11 +28,33 @@ $(document).ready(function() {
 
 });
 
+// clear all menu selections, and mark the given item as selected
+function makeMenuSelection(selectedItem) {
+  $('nav li a').each(function() {
+    $(this).removeClass('selected');
+  });
+
+  selectedItem.addClass('selected');
+}
+
 function menuNavigator() {
+  // at site load, animate it to first selection
+  $('#navigator').animate({
+    left: $('nav li:first').position().left,
+    width: $('nav li:first').width()
+  });
+
   $('nav li').hover(function() {
     $('#navigator').stop().animate({
       left: $(this).position().left,
       width: $(this).width()
+    });
+  },
+  function() {
+    var selected = $('nav .selected');
+    $('#navigator').stop().animate({
+      left: selected.position().left,
+      width: selected.width()
     });
   });
 }
