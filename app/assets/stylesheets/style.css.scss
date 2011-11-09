@@ -3,10 +3,19 @@ $background: #eee;
 $scroll-container-width: 500px;
 $container-width: 500px;
 
-$theme-color-bright: #e20203;
-$theme-color-dark: #7e0203;
+$theme-color-bright: #d2b100;
+$theme-color-dark: #bc9a52;
 
-$link-color: white;
+$link-color: $theme-color-dark;
+
+$header-height: 175px;
+$nav-height: 42px;
+
+@mixin textshadow($p1, $p2, $p3, $color) {
+  -moz-text-shadow: $p1 $p2 $p3 $color;
+  -webkit-text-shadow: $p1 $p2 $p3 $color;
+  text-shadow: $p1 $p2 $p3 $color;
+}
 
 @mixin dropshadow($p1, $p2, $p3, $color) {
   -moz-box-shadow: $p1 $p2 $p3 $color;
@@ -28,13 +37,16 @@ ul { margin-bottom: 1em; }
 
 body {
   background-color: $background;
+  background-image: url(content-bg.png);
   font-family: ff-dagny-web-pro;
-  color: white;
+  color: $theme-color-dark;
+  @include textshadow(0px, 1px, 0, black);
 }
 
 a, a:visited {
   color: $link-color;
   text-decoration: none;
+  @include textshadow(1px, 1px, 0, black);
 
   &:hover {
     color: $theme-color-bright;
@@ -56,7 +68,12 @@ h1 {
 
 header {
   background: yellow;
-  @include dropshadow(5px, 5px, 5px, #a7a7a7);
+  @include dropshadow(5px, 5px, 5px, black);
+
+  background-image: url(header-bg.png);
+  height: $header-height;
+
+  text-shadow: 1px 1px 2px black;
 }
 
 header .language {
@@ -97,25 +114,28 @@ header .twitter {
 
 #navigator {
   position: absolute;
-  width: 1px;
-  height: 50px;
+  width: 0px;
+  height: $nav-height;
   background: $theme-color-bright;
-  z-index: -1;
+  z-index: 0;
 }
 
 nav {
-  position: relative;
   display: block;
-  height: 50px;
-  border-bottom: 4px solid $theme-color-bright;
+  height: $nav-height;
+  position: absolute;
+  top: $header-height - $nav-height;
 }
 
 #info {
+  position: relative;
   list-style: none;
   display: inline;
   width: 100%;
 
   li {
+    position: relative;
+    z-index: 1;
     width: $container-width / 4;
     float: left;
     height: 2em;
