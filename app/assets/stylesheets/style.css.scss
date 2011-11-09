@@ -8,7 +8,7 @@ $theme-color-dark: #bc9a52;
 
 $link-color: $theme-color-dark;
 
-$header-height: 175px;
+$header-height: 165px;
 $nav-height: 42px;
 
 @mixin textshadow($p1, $p2, $p3, $color) {
@@ -17,10 +17,30 @@ $nav-height: 42px;
   text-shadow: $p1 $p2 $p3 $color;
 }
 
+@mixin textshadowtwo($p1, $p2, $p3, $color, $s1, $s2, $s3, $color2) {
+  -moz-text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
+  -webkit-text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
+  text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
+}
+
 @mixin dropshadow($p1, $p2, $p3, $color) {
   -moz-box-shadow: $p1 $p2 $p3 $color;
   -webkit-box-shadow: $p1 $p2 $p3 $color;
   box-shadow: $p1 $p2 $p3 $color;
+}
+
+@mixin scale($size) {
+  -moz-transform: scale($size);
+  -webkit-transform: scale($size);
+  transform: $size;
+}
+
+@mixin transition($p1, $p2, $p3) {
+  -webkit-transition: $p1 $p2 $p3;
+  -moz-transition: $p1 $p2 $p3;
+  -o-transition: $p1 $p2 $p3;
+  -ms-transition: $p1 $p2 $p3;
+  transition: $p1 $p2 $p3;
 }
 
 .clear { clear: both; }
@@ -38,7 +58,7 @@ ul { margin-bottom: 1em; }
 body {
   background-color: $background;
   background-image: url(content-bg.png);
-  font-family: ff-dagny-web-pro;
+  font-family: adelle, sans-serif;//ff-dagny-web-pro;
   color: $theme-color-dark;
   @include textshadow(0px, 1px, 0, black);
 }
@@ -47,9 +67,12 @@ a, a:visited {
   color: $link-color;
   text-decoration: none;
   @include textshadow(1px, 1px, 0, black);
+  @include transition(all, 0.3s, ease-in-out);
 
   &:hover {
     color: $theme-color-bright;
+    @include scale(1.2);
+    @include textshadow(2px, 2px, 0, black);
   }
 }
 
@@ -74,17 +97,58 @@ header {
   height: $header-height;
 
   text-shadow: 1px 1px 2px black;
+
+  margin-bottom: 15px;
+}
+
+header .starburst {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 756px;
+  margin-left: -378px;
+  height: $header-height;
+  background: url(starburst.png);
+  z-index: 0;
+}
+
+header .topOptions {
+  margin-top: 7px;
 }
 
 header .language {
+  position: relative;
   float: left;
   width: 50%;
 }
 
 header .twitter {
+  position: relative;
   float: right;
   width: 50%;
   text-align: right;
+}
+
+header #logo {
+  position: relative;
+  margin-top: 20px;
+
+  h1 {
+    width: 394px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+
+    @include transition(all, 0.3s, ease-in-out);
+
+    color: $theme-color-bright;
+    -webkit-text-shadow: 4px 4px 0px black;
+    @include textshadow(4px, 4px, 0px, black);
+
+    &:hover {
+      @include scale(1.2);
+    }
+  }
 }
 
 /* Section-scrolling */
@@ -134,8 +198,6 @@ nav {
   width: 100%;
 
   li {
-    position: relative;
-    z-index: 1;
     width: $container-width / 4;
     float: left;
     height: 2em;
@@ -144,15 +206,12 @@ nav {
     font-weight: bold;
     text-align: center;
 
-    &:hover {
-      //background: $theme-color-bright;
-    }
-  
     a {
+      position: relative;
       display: block;
       width: 100%;
       height: 100%;
-      padding-top: 7px;
+      padding-top: 10px;
 
       &:hover {
         color: white;
@@ -162,9 +221,14 @@ nav {
   }
 }
 
+.hovered {
+  color: white;
+}
+
 /* Difficulty selector */
 
 #difficulty {
+  position: relative;
   list-style: none;
   display: inline;
   width: 100%;
@@ -173,11 +237,10 @@ nav {
     width: $container-width / 3;
     float: left;
     text-align: center;
+    height: 1.75em;
 
-    &:hover { background-color: $theme-color-bright; }
-
-    a:hover {
-      color: white;
+    a {
+      display: block;
     }
   }
 }

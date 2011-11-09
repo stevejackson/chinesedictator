@@ -40,22 +40,30 @@ function makeMenuSelection(selectedItem) {
 function menuNavigator() {
   // at site load, animate it to first selection
   $('#navigator').animate({
-    left: $('nav li:first').position().left,
-    width: $('nav li:first').width()
+    left: $('nav li a:first').position().left,
+    width: $('nav li a:first').width()
   });
 
   $('nav li').hover(function() {
-    $('#navigator').stop().animate({
-      left: $(this).position().left,
-      width: $(this).width()
-    });
-  },
-  function() {
-    var selected = $('nav .selected');
-    $('#navigator').stop().animate({
-      left: selected.position().left,
-      width: selected.width()
-    });
+      $('nav .hovered').each(function() {
+        $(this).removeClass('hovered');
+      });
+
+      $('#navigator').stop().animate({
+        left: $(this).position().left,
+        width: $(this).width()
+      });
+
+      $(this).addClass('hovered');
+    },
+    function() {
+      var selected = $('nav .selected').parent();
+      $('#navigator').stop().animate({
+        left: selected.position().left,
+        width: selected.width()
+      });
+      $(this).removeClass('hovered');
+      $('nav .selected').addClass('hovered');
   });
 }
 

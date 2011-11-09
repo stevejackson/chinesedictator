@@ -22,55 +22,34 @@
   %body
    
     %header
+      .starburst
       .centeredContainer
         .topOptions
           .language
-            English | 汉语
+            %a{ :href => '#' } English
+            |
+            %a{ :href => '#' } 汉语
           .twitter
             %a{ :href => 'http://twitter.com/_sjackson' }
               Follow me on Twitter.
+        .clear
 
-        .logo
-          %h1
-            %a{ :href => '/' } Chinese Dictator 中文
-
+        #logo
+          %a{ :href => '/' }
+            %h1 Chinese Dictator
+              
         %nav 
           #navigator
           %ul#info
             %li.learn
-              %a.selected{ :href => '#learn' }
+              %a.selected.hovered{ :href => '#learn' }
                 LEARN
             %li.faq
               %a{ :href => '#faq' }
                 FAQ
-            %li.help
-              %a{ :href => '#help' }
-                HELP
-            %li.about
-              %a{ :href => '#about' }
-                ABOUT
-
-
-        
-    
-
-    -#.centeredContainer
-      .container
-        %h1
-          %a{ :href => '/' } Chinese Dictator 中文
-
-        %nav 
-          #navigator
-          %ul#info
-            %li.learn
-              %a.selected{ :href => '#learn' }
-                LEARN
-            %li.faq
-              %a{ :href => '#faq' }
-                FAQ
-            %li.help
-              %a{ :href => '#help' }
-                HELP
+            %li.tools
+              %a{ :href => '#tools' }
+                TOOLS
             %li.about
               %a{ :href => '#about' }
                 ABOUT
