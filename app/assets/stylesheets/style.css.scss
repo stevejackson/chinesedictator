@@ -106,8 +106,8 @@ header .starburst {
   top: 0;
   left: 50%;
 
-  width: 756px;
-  margin-left: -378px;
+  width: 729px;
+  margin-left: -364px;
   height: $header-height;
   background: url(starburst.png);
   z-index: 0;
@@ -142,8 +142,7 @@ header #logo {
     @include transition(all, 0.3s, ease-in-out);
 
     color: $theme-color-bright;
-    -webkit-text-shadow: 4px 4px 0px black;
-    @include textshadow(4px, 4px, 0px, black);
+    @include textshadow(7px, 7px, 0px, black);
 
     &:hover {
       @include scale(1.2);
