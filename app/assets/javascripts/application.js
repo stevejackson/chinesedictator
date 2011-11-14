@@ -5,7 +5,9 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery_ujs
-//= require 'dictator'
-//= require 'main'
-//= require_tree .
+//= require jquery-ui
+//= require jquery.scrollTo-min
+//= require dictator
+//= require main
+//= require_self
+//= require_tree
