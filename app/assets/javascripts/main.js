@@ -3,8 +3,7 @@ $(document).ready(function() {
   menuNavigator();
 
   //progress bar set up
-  $('#progressBar').progressbar({
-  });
+  $('#progressBar').progressbar();
 
   // horizontal scrolling
   //$('.section').scrollable().navigator();

@@ -1,9 +1,17 @@
 # encoding: utf-8
 
-q1 = Question.create!(difficulty: 1, sentence: "Hello")
-Translation.create!(question_id: q1.id, sentence: "你好", language: "hanzi")
-Translation.create!(question_id: q1.id, sentence: "nǐ hǎo", language: "pinyin")
+require 'csv'
 
-q2 = Question.create!(difficulty: 1, sentence: "How are you?")
-Translation.create!(question_id: q2.id, sentence: "你好吗？", language: "hanzi")
-Translation.create!(question_id: q2.id, sentence: "nǐ hǎo ma?", language: "pinyin")
+CSV.foreach("db/seeds.csv") do |row|
+  q = Question.create! difficulty: row[0],
+                       uri: row[1],
+                       sentence: row[2]
+  Translation.create! question_id: q.id,
+                      language: 'hanzi',
+                      sentence: row[3]
+  Translation.create! question_id: q.id,
+                      language: 'pinyin',
+                      sentence: row[4]
+end
+
+puts 'Seeding complete.'
