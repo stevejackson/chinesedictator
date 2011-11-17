@@ -25,4 +25,6 @@ group :test, :development do
   gem 'rspec-fuuu'
   gem 'capybara'
   gem 'jasmine-rails'
+
+  gem 'nokogiri'
 end
