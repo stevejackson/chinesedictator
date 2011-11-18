@@ -1,4 +1,3 @@
-
 #learn.section
   .contentBox
     .container
@@ -10,15 +9,10 @@
         %li
           %a{ :href => '#' } Hard
 
-      #question
-        = render :partial => '/dictator/question'
-
       #controls
         %input.play{ :type => 'button', :value => 'Play' }
 
       #notification
-
-      #question
 
       #progress
 
@@ -29,7 +23,8 @@
 
       %input#userinput{ :type => 'text' }
 
-      #flash
+      #question
+        = render :partial => '/dictator/question'
 
 #tools.section
   .contentBox

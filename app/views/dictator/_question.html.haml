@@ -1,5 +1,5 @@
 -if not @question.nil?
-  %audio#audio{:src => 'http://s3contents.chinesepod.com/1656/3532560445875c8ec035e0a5d75ed06ed7f81c58/mp3/64/' + @question.uri }
+  %audio#audio{:src => @question.uri }
   .sentence= @question.sentence
   .difficulty= @question.difficulty
   -if not @question.translations.nil?

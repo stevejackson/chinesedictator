@@ -7,7 +7,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery.scrollTo-min
+//= require jquery.pinyin
 //= require dictator
 //= require main
 //= require_self
-//= require_tree

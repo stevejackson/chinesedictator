@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
   menuNavigator();
+  bindKeysNotComplete();
 
-  //progress bar set up
   $('#progressBar').progressbar();
+  $('#userinput').enable_pinyin_input();
 
-  // horizontal scrolling
   //$('.section').scrollable().navigator();
   $('nav a').click(function(event) {
 
@@ -18,14 +18,16 @@ $(document).ready(function() {
   });
 
   $('.play').click(function() {
-
-    $('#audio').get(0).play();
-
+    playAudio();
   });
 
   newQuestion();
 
 });
+
+function playAudio() {
+  $('#audio').get(0).play();
+}
 
 // clear all menu selections, and mark the given item as selected
 function makeMenuSelection(selectedItem) {
@@ -117,17 +119,33 @@ function newQuestion() {
 
 function showCompletionNotification() {
   $('#question').show();
-  
-  // Now they can press enter to move onto the next question.
-  $(document).keypress(function(event) {
-    if(event.which == 13) {
-      $('#userinput').val('');
-      $.ajax('/question?difficulty=1');
-    }
-  });
+  bindKeysComplete();
 }
 
 function hideCompletion() {
   $('#question').hide();
-  $(document).unbind('keypress');
+  bindKeysNotComplete();
+}
+
+function bindKeysNotComplete() {
+  $('#userinput').unbind('keypress');
+
+  $('#userinput').keypress(function(event) {
+    if(event.which == 13) {
+      playAudio();
+    }
+  });
+}
+
+function bindKeysComplete() {
+  $('#userinput').unbind('keypress');
+
+  $('#userinput').keypress(function(event) {
+    if(event.which == 13) {
+      $('#userinput').val('');
+      $.ajax('/question?difficulty=1');
+
+      playAudio();
+    }
+  });
 }
