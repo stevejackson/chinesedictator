@@ -7,7 +7,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'ting/string'
 
-puts 'tTESTESTestest'
 file = File.open('file.html')
 doc = Nokogiri::HTML(file) 
 
@@ -23,36 +22,43 @@ doc.css('div.dialogue-list > div').each_with_index do |dialogue, index|
   3.times { children.shift }
 
   # now we're somewhere useful. we're at the first span containing a word.
+  before_br = true
   children.each do |entry|
-    # we only want shit up to the <br>
-    break if entry.to_s == '<br>'
-
-    if entry.to_s.match(/^<span/)
-      # we need to grab the hanzi and append it.
-      hanzi_sentence << entry.text
-      
-      # grabbing the pinyin is involved.
-      pinyin = entry['onmouseover']
-      pinyin = pinyin.split "'"
-      pinyin_sentence << pinyin[3].pretty_tones
-    else
-      # it's punctuation. tack it on.
-      hanzi_sentence << entry.text
-      pinyin_sentence << entry.text
+    # we only want things up to the <br>
+    if entry.to_s = '<br>'
+      before_br = false
     end
 
-    # put some space in the pinyin.
-    pinyin_sentence << ' '
+    if before_br
+      if entry.to_s.match(/^<span/)
+        hanzi_sentence << entry.text
 
+        pinyin = entry['onmouseover']
+        pinyin = pinyin.split "'"
+        pinyin_sentence << pinyin[3].pretty_tones
+      else
+        # it's punctuation.
+        hanzi_sentence << entry.text
+        pinyin_sentence << entry.text
+      end
 
-    puts "-#{entry.to_s}-"
+      # put some space in the pinyin.
+      pinyin_sentence << ' '
+    else
+      if entry.to_s.match /^<span/
+        english_sentence << entry.text
+        break
+      end
+    end
   end
-  
+
   puts hanzi_sentence
   puts pinyin_sentence
   puts english_sentence
-  puts '-------------------------'
-end
+  puts '---'
 
-doc.css('div.dialogue-list > div').each_with_index do |dialogue, index|
+  CSV.open('scraped.csv', 'a') do |csv|
+    csv << [ARGV[0], audio, english_sentence, hanzi_sentence, pinyin_sentence]
+  end
+
 end
