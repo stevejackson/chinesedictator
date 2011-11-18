@@ -2,8 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-gem 'thin'
-
+gem 'thin' 
 gem 'pg'
 
 gem 'therubyracer'
@@ -27,4 +26,6 @@ group :test, :development do
   gem 'jasmine-rails'
 
   gem 'nokogiri'
+  gem 'ting', git: 'git@github.com:stevejackson/ting.git'
 end
+
