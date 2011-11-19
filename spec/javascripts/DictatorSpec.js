@@ -76,11 +76,11 @@ describe("Dictator", function() {
     expect(dictator.failureIndex).toBe(5);
   });
 
-  it("should set index of comparison failure insensitive to sanitization", function() {
+  it("should set index of comparison failure sensitive to sanitization", function() {
     dictator.dictations = new Array("Stewie, hey there!");
     dictator.analyze("Stewie, heiy there!");
 
-    expect(dictator.failureIndex).toBe(10);
+    expect(dictator.failureIndex).toBe(8);
   });
 
   it("should show completion as false when testing an empty string", function() {
@@ -105,7 +105,7 @@ describe("Dictator", function() {
   });
 
   it("should detect which dictation target you're working on", function() {
-    dictator.dictations = new Array("zǎo, lǎoshīhǎo", "早，老师好");
+    dictator.dictations = new Array("zǎo, lǎoshīhǎo", "早，老师好", "useless");
 
     dictator.analyze("早");
     expect(dictator.dictationTarget).toBe("早，老师好");
@@ -116,6 +116,25 @@ describe("Dictator", function() {
     dictator.dictationTarget = undefined;
     dictator.analyze("");
     expect(dictator.dictationTarget).toBe("zǎo, lǎoshīhǎo");
+  });
+
+  it("should detect correctSoFar", function() {
+    dictator.dictations = new Array("早，老师好", "zǎo, lǎo shī hǎo");
+
+    dictator.analyze("zǎo, lao");
+    expect(dictator.correctSoFar).toBe("zǎo, l");
+
+    dictator.analyze("zǎolǎo sheee");
+    expect(dictator.correctSoFar).toBe("zǎo, lǎo sh");
+
+    dictator.analyze("z");
+    expect(dictator.correctSoFar).toBe("z");
+
+    dictator.dictations = new Array("wǒ jiào wáng píng. nǐ ne?");
+    dictator.analyze("wǒ jiào wáng p");
+    //alert(dictator.failureIndex);
+    //alert(dictator.sanitizations);
+    expect(dictator.correctSoFar).toBe("wǒ jiào wáng p");
   });
 
 });

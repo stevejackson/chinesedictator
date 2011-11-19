@@ -6,4 +6,4 @@ tmp/
 /config/database.yml
 db/scraped.csv
 *#
-
+*~

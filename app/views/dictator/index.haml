@@ -12,16 +12,16 @@
       #controls
         %input.play{ :type => 'button', :value => 'Play' }
 
-      #notification
-
       #progress
 
       #progressBar
         %span.pbLabel
 
-      %br
+      #userinputwrapper
+        %input#userinput{ :type => 'text' }
 
-      %input#userinput{ :type => 'text' }
+      #notifications
+        #correctProgress
 
       #question
         = render :partial => '/dictator/question'

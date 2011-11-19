@@ -49,6 +49,22 @@ Dictator.prototype.compareStringsByChar = function(string1, string2) {
   return returnArray;
 }
 
+// Takes the complete target, and the partial sanitized version.
+// Returns the unsanitized version up to the partial sanitized version.
+Dictator.prototype.matchPartialSanitizedToTarget = function(target, partialSanitized) {
+  var i = 0;
+  for(i = target.length; i > 0; i--) {
+    var partialTarget = target.substring(0, i);
+    var targetSanitized = this.sanitize(partialTarget);
+
+    if(targetSanitized == partialSanitized) {
+      return partialTarget;
+    }
+  }
+
+  return "";
+}
+
 Dictator.prototype.analyze = function(input) {
   this.failureIndex = 0;
   this.complete = false;
@@ -68,16 +84,21 @@ Dictator.prototype.analyze = function(input) {
       this.failureIndex = sanitizedSentence.length;
       this.completed = true;
       this.dictationTarget = this.dictations[i];
+      this.correctSoFar = this.dictations[i];
       return true;
     }
 
-    var comparisonFailureIndex = comparison[0] + this.sanitizationsUpToIndex(input, comparison[0]);
+    var comparisonFailureIndex = comparison[0];// + this.sanitizationsUpToIndex(input, comparison[0]);
     if(comparisonFailureIndex >= largestFailureIndex) {
       this.failureIndex = comparisonFailureIndex;
       largestFailureIndex = this.failureIndex;
       this.dictationTarget = this.dictations[i];
+      this.sanitizedTarget = sanitizedSentence;
+
+      var correctSoFarSanitized = sanitizedInput.substring(0, this.failureIndex);
+      this.correctSoFar = this.matchPartialSanitizedToTarget(this.dictationTarget, correctSoFarSanitized);
     }
-    else {
+    else if(largestFailureIndex == 0) {
       this.dictationTarget = this.dictations[0];
     }
   }

@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:stevejackson/ting.git
-  revision: f197fe1b143b731524e602a572165254d897a9b3
+  revision: 39ca5c5e792faa596f3bf66090abe4bd4e0fcc1f
   specs:
     ting (0.2.1)
 
