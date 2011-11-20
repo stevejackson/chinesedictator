@@ -10,9 +10,8 @@
           %a{ :href => '#' } Hard
 
       #controls
-        %input.play{ :type => 'button', :value => 'Play' }
-
-      #progress
+        %input.play{ :type => 'button', :value => 'Play (Press Enter)' }
+        %input.hint{ :type => 'button', :value => 'Hint [ctrl+enter]' }
 
       #progressBar
         %span.pbLabel
@@ -22,6 +21,12 @@
 
       #notifications
         #correctProgress
+        #hint
+        #translationHanzi
+        #translationEnglish
+        #instructions
+          %input.next{ :type => 'button', :value => 'Next [Enter]' }
+          
 
       #question
         = render :partial => '/dictator/question'

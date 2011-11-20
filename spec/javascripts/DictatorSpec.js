@@ -132,9 +132,20 @@ describe("Dictator", function() {
 
     dictator.dictations = new Array("wǒ jiào wáng píng. nǐ ne?");
     dictator.analyze("wǒ jiào wáng p");
-    //alert(dictator.failureIndex);
-    //alert(dictator.sanitizations);
     expect(dictator.correctSoFar).toBe("wǒ jiào wáng p");
+  });
+
+  it("should be able to provide the next word as a hint", function() {
+    dictator.dictations = new Array("zǎo, lǎo shī hǎo");
+
+    dictator.analyze("zǎo, l");
+    expect(dictator.hint).toBe("lǎo");
+
+    dictator.analyze("zà");
+    expect(dictator.hint).toBe("zǎo");
+
+    dictator.analyze("zǎo, lǎo shī hāo");
+    expect(dictator.hint).toBe("hǎo");
   });
 
 });

@@ -4,17 +4,23 @@ function Dictator() {
 }
 
 
-Dictator.prototype.sanitize = function(input) {
+Dictator.prototype.sanitize = function(input, keepSpaces) {
   if(input == undefined) {
     input = ' ';
   }
-  var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。]/gi, '');
+  var sanitized = "";
+  if(keepSpaces) {
+    var sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。]/gi, '');
+  }
+  else {
+    var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。]/gi, '');
+  }
   return sanitized.toLowerCase();
 }
 
 Dictator.prototype.sanitizationsUpToIndex = function(input, index) {
   var before = input.substring(0, index);
-  var sanitized = this.sanitize(before);
+  var sanitized = this.sanitize(before, false);
   return before.length - sanitized.length;
 }
 
@@ -55,7 +61,7 @@ Dictator.prototype.matchPartialSanitizedToTarget = function(target, partialSanit
   var i = 0;
   for(i = target.length; i > 0; i--) {
     var partialTarget = target.substring(0, i);
-    var targetSanitized = this.sanitize(partialTarget);
+    var targetSanitized = this.sanitize(partialTarget, false);
 
     if(targetSanitized == partialSanitized) {
       return partialTarget;
@@ -65,19 +71,44 @@ Dictator.prototype.matchPartialSanitizedToTarget = function(target, partialSanit
   return "";
 }
 
+Dictator.prototype.getHint = function(target, input) {
+  var sanitizedTarget = this.sanitize(target, true);
+  var sanitizedInput = this.sanitize(input, true);
+  
+  // discover where we start to differ from the input.
+  var i = 0;
+  var beginningOfWord = 0;
+  for(i = 0; i < sanitizedInput.length; i++) {
+    if(sanitizedTarget.charAt(i) == ' ') {
+      beginningOfWord = i + 1;
+    }
+    var partialTarget = sanitizedTarget.substring(0, i);
+    var partialInput = sanitizedTarget.substring(0, i);
+    if(partialTarget != partialInput)
+      break;
+  }
+
+  // now let's grab the hint
+  sanitizedTarget = sanitizedTarget.substring(beginningOfWord, sanitizedTarget.length); 
+  var endOfWord = sanitizedTarget.indexOf(" ") > 0 ? sanitizedTarget.indexOf(" ") : sanitizedTarget.length;
+  var hint = sanitizedTarget.substring(0, endOfWord);
+
+  return hint;
+}
+
 Dictator.prototype.analyze = function(input) {
   this.failureIndex = 0;
   this.complete = false;
 
   // sanitize the input. we don't care about their punctuation.
-  sanitizedInput = this.sanitize(input);
+  sanitizedInput = this.sanitize(input, false);
 
   // help us track which dictation they're working on.
   var largestFailureIndex = 0;
 
   for(i in this.dictations) {
     // sanitize the sentence we're comparing it to as well!
-    sanitizedSentence = this.sanitize(this.dictations[i]);
+    sanitizedSentence = this.sanitize(this.dictations[i], false);
 
     var comparison = this.compareStringsByChar(sanitizedInput, sanitizedSentence);
     if(comparison[0] == 'true') {
@@ -88,7 +119,7 @@ Dictator.prototype.analyze = function(input) {
       return true;
     }
 
-    var comparisonFailureIndex = comparison[0];// + this.sanitizationsUpToIndex(input, comparison[0]);
+    var comparisonFailureIndex = comparison[0];
     if(comparisonFailureIndex >= largestFailureIndex) {
       this.failureIndex = comparisonFailureIndex;
       largestFailureIndex = this.failureIndex;
@@ -97,6 +128,7 @@ Dictator.prototype.analyze = function(input) {
 
       var correctSoFarSanitized = sanitizedInput.substring(0, this.failureIndex);
       this.correctSoFar = this.matchPartialSanitizedToTarget(this.dictationTarget, correctSoFarSanitized);
+      this.hint = this.getHint(this.dictationTarget, input);
     }
     else if(largestFailureIndex == 0) {
       this.dictationTarget = this.dictations[0];

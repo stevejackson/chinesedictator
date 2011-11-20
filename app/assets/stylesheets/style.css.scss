@@ -258,6 +258,7 @@ nav {
   padding: 7px 5px;
   margin: 0;
   font-size: 1.2em;
+  text-align: center;
 }
 
 .correct {
@@ -270,10 +271,26 @@ nav {
 
 #question { display: none; }
 
+#notifications {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.pulsating {
+  @include textshadow(0, 0, 3px, $theme-color-bright);
+}
+
+#notifications #instructions {
+  display: none;
+}
+
+#hint { display: none; }
+
 #progressBar {
   position: relative;
   width: $container-width;
   height: 2em;
+  margin-bottom: 1em;
 }
 .pbLabel {
   position: absolute;

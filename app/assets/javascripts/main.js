@@ -2,12 +2,16 @@
     $(document).ready(function() {
 
   menuNavigator();
+  $(document).keypress(function(event) {
+    if(event.which == 13) {
+      playAudio();
+    }
+  });
+
   bindKeysNotComplete();
 
   $('#progressBar').progressbar();
-  $('#userinput2').enable_pinyin_input();
   $('#userinput').enable_pinyin_input();
-  //$('#test').enable_pinyin_input();
 
   $('nav a').click(function(event) {
 
@@ -23,8 +27,11 @@
     playAudio();
   });
 
+  $('.hint').click(function() { $('#hint').show(); });
+
   newQuestion();
 
+  playAudio();
 });
 
 function playAudio() {
@@ -87,27 +94,26 @@ function newQuestion() {
 
     dic.analyze(userinput);
 
+    var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
+    var percentage = parseInt((dic.failureIndex / sanitizedTargetLength) * 100);
+    $('#progressBar').progressbar("option", "value", percentage);
+    $('.pbLabel').text(percentage + "%");
+    $('#hint').text('Hint: ' + dic.hint);
+
+    $('#correctProgress').html(dic.correctSoFar);
+
     // update indicator on whether or not we're successful
     if(dic.completed) {
       $('#userinput').removeClass('incorrect');
       $('#userinput').addClass('correct');
 
-      showCompletionNotification(dic);
+      showCompletionNotification();
     }
     else {
       $('#userinput').removeClass('correct');
       $('#userinput').addClass('incorrect');
-
-      hideCompletion();
     }
 
-    // update progress bar
-    var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
-    var percentage = parseInt((dic.failureIndex / sanitizedTargetLength) * 100);
-    $('#progressBar').progressbar("option", "value", percentage);
-    $('.pbLabel').text(percentage + "%");
-
-    $('#notifications').text(dic.correctSoFar);
   }
 
   function getTranslations() {
@@ -121,22 +127,43 @@ function newQuestion() {
   }
 }
 
-function showCompletionNotification(dictator) {
-  //$('#notifications').show();
+function showCompletionNotification() {
   bindKeysComplete();
+
+  $('#notifications').addClass('pulsating');
+
+  var english = $('#question .sentence').first().text();
+  var hanzi = $('#question .translation .sentence').first().text();
+  $('#notifications #translationEnglish').text(english);
+  $('#notifications #translationHanzi').text(hanzi);
+  $('#notifications #instructions').show();
+  $('#hint').hide();
 }
 
-function hideCompletion() {
-  $('#question').hide();
+function clearNotificationArea() {
+  $('#notifications').removeClass('pulsating');
+  $('#correctProgress').text('');
+  $('#notifications #translationHanzi').text('');
+  $('#notifications #translationEnglish').text('');
+  $('#hint').text('');
+
+  $('#notifications #instructions').hide();
   bindKeysNotComplete();
 }
 
 function bindKeysNotComplete() {
   $('#userinputwrapper').unbind('keypress');
 
-  $('#userinputwrapper').keypress(function(event) {
-    if(event.which == 13) {
-      playAudio();
+  $(document).keypress(function(event) {
+    // ctrl + enter, get a hint
+    event.stopPropagation();
+    if(event.which == 10 && event.ctrlKey) {
+      $('#hint').show(); 
+    }
+
+    // anything else, hide the hint
+    else {
+      $('#hint').hide();
     }
   });
 }
@@ -147,9 +174,12 @@ function bindKeysComplete() {
   $('#userinputwrapper').keypress(function(event) {
     if(event.which == 13) {
       $('#userinput').val('');
-      $.ajax('/question?difficulty=1');
+      $.ajax({
+        url: '/question?difficulty=1',
+        complete: function() { playAudio(); }
+      });
 
-      playAudio();
+      clearNotificationArea();
     }
   });
 }
