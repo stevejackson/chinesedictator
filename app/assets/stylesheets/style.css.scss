@@ -253,8 +253,8 @@ nav {
   margin: 1em 0;
 }
 
-#userinput, #userinput2 {
-  width: 100%;
+#userinput {
+  width: $container-width - 26px;
   padding: 7px 5px;
   margin: 0;
   font-size: 1.2em;
@@ -297,4 +297,27 @@ nav {
   width: 100%;
   text-align: center;
   line-height: 2em;
+}
+
+.button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: .5em 2em .5em;
+  -webkit-border-radius: .5em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+.half-width {
+  position: relative;
+  width: 225px;
+  text-align: center;
 }

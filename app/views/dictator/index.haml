@@ -9,9 +9,13 @@
         %li
           %a{ :href => '#' } Hard
 
+      .clear
+
       #controls
-        %input.play{ :type => 'button', :value => 'Play (Press Enter)' }
-        %input.hint{ :type => 'button', :value => 'Hint [ctrl+enter]' }
+        .half-width
+          %input.play.button{ :type => 'button', :value => 'Play (Press Enter)' }
+        .half-width
+          %input.hint.button{ :type => 'button', :value => 'Hint [ctrl+enter]' }
 
       #progressBar
         %span.pbLabel
