@@ -12,10 +12,12 @@
       .clear
 
       #controls
-        .half-width
-          %input.play.button{ :type => 'button', :value => 'Play (Press Enter)' }
-        .half-width
-          %input.hint.button{ :type => 'button', :value => 'Hint [ctrl+enter]' }
+        .half-width.play
+          %input.controls-button{ :type => 'button', :value => 'Play (Press Enter)' }
+        .half-width.hint
+          %input.controls-button{ :type => 'button', :value => 'Hint [ctrl+enter]' }
+
+      .clear
 
       #progressBar
         %span.pbLabel
@@ -29,7 +31,7 @@
         #translationHanzi
         #translationEnglish
         #instructions
-          %input.next{ :type => 'button', :value => 'Next [Enter]' }
+          %input.next.controls-button{ :type => 'button', :value => 'Next [Enter]' }
           
 
       #question

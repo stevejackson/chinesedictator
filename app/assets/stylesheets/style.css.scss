@@ -1,4 +1,5 @@
 @import "compass/css3";
+
 $background: #eee;
 
 $scroll-container-width: 500px;
@@ -55,7 +56,6 @@ h1 {
 .container {
   width: $container-width;
   margin: 0 auto;
-  padding: 10px;
 }
 
 /* header */
@@ -69,7 +69,7 @@ header {
 
   @include text-shadow(1px 1px 2px black);
 
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 header .starburst {
@@ -219,15 +219,8 @@ nav {
 
 /* Interactive area */
 
-#controls input[type=button] {
-  padding: 10px 0;
-  margin: 0;
-  width: 100%;
-  margin: 1em 0;
-}
-
 #userinput {
-  width: $container-width - 26px;
+  width: $container-width - 16px;
   padding: 7px 5px;
   margin: 0;
   font-size: 1.2em;
@@ -272,25 +265,46 @@ nav {
   line-height: 2em;
 }
 
-.button {
+.controls-button {
   display: inline-block;
   outline: none;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1em;
   padding: .5em 2em .5em;
-  -webkit-border-radius: .5em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-.button:active {
-  position: relative;
-  top: 1px;
+  width: 240px;
+
+  padding: 10px 0;
+  margin: 0;
+  margin: 1em 0;
+
+  @include border-radius(5px);
+  @include text-shadow(0 1px 1px #cacaca);
+
+  background-color: $theme-color-bright;
+  @include background(linear-gradient(top, lighten($theme-color-bright, 10%), darken($theme-color-bright, 10%)));
+  border: 1px solid black;
+
+  &:hover {
+    @include background(linear-gradient(top, lighten($theme-color-bright, 5%), darken($theme-color-bright, 15%)));
+  }
+
+  &:active {
+    @include box-shadow(inset 0 0 5px 1px black, inset 0 1px 0 0 black);
+  }
 }
 
 .half-width {
   position: relative;
-  width: 225px;
+  width: 250px;
   text-align: center;
+}
+
+.play {
+  float: left;
+}
+
+.hint {
+  float: right;
 }
