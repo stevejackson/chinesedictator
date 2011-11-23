@@ -32,6 +32,7 @@
   });
 
   $('.hint').click(function() { $('#hint').show(); });
+  $('.next').click(function() { getNextQuestion(); });
 
   newQuestion();
 
@@ -185,14 +186,21 @@ function bindKeysComplete() {
 
   $('#userinputwrapper').keypress(function(event) {
     if(event.which == 13) {
-      $('#userinput').val('');
-      $.ajax({
-        url: '/question?difficulty=1',
-        complete: function() { playAudio(); }
-      });
-
-      clearNotificationArea();
+      getNextQuestion();
     }
   });
 }
+
+function getNextQuestion() {
+  $.ajax({
+    url: '/question?difficulty=1',
+    complete: function() { playAudio(); }
+  });
+  $('#userinput').val('');
+
+  clearNotificationArea();
+
+  $('#userinput').focus();
+}
+
 })();
