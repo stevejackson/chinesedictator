@@ -101,6 +101,8 @@ function newQuestion() {
     var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
     var percentage = parseInt((dic.failureIndex / sanitizedTargetLength) * 100);
 
+    alert(userinput + ' || ' + dic.dictationTarget + ' || ' + percentage.toString());
+
     if(percentage > 0) { $('#progressBar .ui-progressbar-value').show(); }
     else { $('#progressBar .ui-progressbar-value').hide(); }
 
