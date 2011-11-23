@@ -22,9 +22,9 @@
       .centeredContainer
         .topOptions
           .language
-            %a{ :href => '#' } English
+            %a{ :href => '/?locale=en' } English
             |
-            %a{ :href => '#' } 汉语
+            %a{ :href => '/?locale=cn' } 汉语
           .twitter
             %a{ :href => 'http://twitter.com/_sjackson' }
               Follow me on Twitter.
@@ -32,7 +32,7 @@
 
         #logo
           %a{ :href => '/' }
-            %h1 Chinese Dictator
+            %h1= t :header
               
         %nav 
           #navigator
