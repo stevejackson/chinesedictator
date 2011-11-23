@@ -170,7 +170,7 @@ nav {
   width: 100%;
 
   li {
-    width: $container-width / 4;
+    width: $container-width / 3;
     float: left;
     height: 2em;
 
@@ -254,10 +254,11 @@ nav {
 
 #progressBar {
   position: relative;
-  width: $container-width;
+  width: $container-width - 2px;
   height: 2em;
   margin-bottom: 1em;
 }
+
 .pbLabel {
   position: absolute;
   width: 100%;

@@ -1,6 +1,7 @@
 (function(){
     $(document).ready(function() {
 
+
   menuNavigator();
   $(document).keypress(function(event) {
     if(event.which == 13) {
@@ -11,6 +12,9 @@
   bindKeysNotComplete();
 
   $('#progressBar').progressbar();
+  $('#progressBar .ui-progressbar-value').addClass('ui-corner-right');
+  $('#progressBar .ui-progressbar-value').addClass('ui-corner-left');
+
   $('#userinput').enable_pinyin_input();
 
   $('nav a').click(function(event) {
@@ -96,7 +100,13 @@ function newQuestion() {
 
     var sanitizedTargetLength = dic.sanitize(dic.dictationTarget).length;
     var percentage = parseInt((dic.failureIndex / sanitizedTargetLength) * 100);
-    $('#progressBar').progressbar("option", "value", percentage);
+
+    if(percentage > 0) { $('#progressBar .ui-progressbar-value').show(); }
+    else { $('#progressBar .ui-progressbar-value').hide(); }
+
+    var targetWidth = (498 * (percentage / 100)).toString() + 'px';
+    $('#progressBar .ui-progressbar-value').stop().animate({width:targetWidth}, 100);
+
     $('.pbLabel').text(percentage + "%");
     $('#hint').text('Hint: ' + dic.hint);
 
