@@ -132,6 +132,7 @@ Dictator.prototype.analyze = function(input) {
     }
     else if(largestFailureIndex == 0) {
       this.dictationTarget = this.dictations[0];
+      this.hint = this.getHint(this.dictationTarget, input);
     }
   }
 

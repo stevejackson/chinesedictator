@@ -10,7 +10,7 @@ require 'ting/string'
 file = File.open('file.html')
 doc = Nokogiri::HTML(file) 
 
-doc.css('div.dialogue-list > div').each_with_index do |dialogue, index|
+doc.css('div.dialogue-list > div').each do |dialogue|
   # grab the audio link
   audio = dialogue.css('div .css_data').text
   hanzi_sentence = ''
@@ -25,7 +25,7 @@ doc.css('div.dialogue-list > div').each_with_index do |dialogue, index|
   before_br = true
   children.each do |entry|
     # we only want things up to the <br>
-    if entry.to_s = '<br>'
+    if entry.to_s == '<br>'
       before_br = false
     end
 
@@ -51,6 +51,10 @@ doc.css('div.dialogue-list > div').each_with_index do |dialogue, index|
       end
     end
   end
+
+  hanzi_sentence = hanzi_sentence.strip
+  pinyin_sentence = pinyin_sentence.strip
+  english_sentence = english_sentence.strip
 
   puts hanzi_sentence
   puts pinyin_sentence

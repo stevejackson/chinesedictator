@@ -146,6 +146,9 @@ describe("Dictator", function() {
 
     dictator.analyze("zǎo, lǎo shī hāo");
     expect(dictator.hint).toBe("hǎo");
+
+    dictator.analyze("");
+    expect(dictator.hint).toBe("zǎo");
   });
 
 });
