@@ -1,3 +1,4 @@
+@import "compass/css3";
 $background: #eee;
 
 $scroll-container-width: 500px;
@@ -10,38 +11,6 @@ $link-color: $theme-color-dark;
 
 $header-height: 165px;
 $nav-height: 42px;
-
-@mixin textshadow($p1, $p2, $p3, $color) {
-  -moz-text-shadow: $p1 $p2 $p3 $color;
-  -webkit-text-shadow: $p1 $p2 $p3 $color;
-  text-shadow: $p1 $p2 $p3 $color;
-}
-
-@mixin textshadowtwo($p1, $p2, $p3, $color, $s1, $s2, $s3, $color2) {
-  -moz-text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
-  -webkit-text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
-  text-shadow: $p1 $p2 $p3 $color, $s1 $s2 $s3 $color2;
-}
-
-@mixin dropshadow($p1, $p2, $p3, $color) {
-  -moz-box-shadow: $p1 $p2 $p3 $color;
-  -webkit-box-shadow: $p1 $p2 $p3 $color;
-  box-shadow: $p1 $p2 $p3 $color;
-}
-
-@mixin scale($size) {
-  -moz-transform: scale($size);
-  -webkit-transform: scale($size);
-  transform: $size;
-}
-
-@mixin transition($p1, $p2, $p3) {
-  -webkit-transition: $p1 $p2 $p3;
-  -moz-transition: $p1 $p2 $p3;
-  -o-transition: $p1 $p2 $p3;
-  -ms-transition: $p1 $p2 $p3;
-  transition: $p1 $p2 $p3;
-}
 
 .clear { clear: both; }
 ::selection, ::-moz-selection { background-color: $theme-color-bright; color: black; }
@@ -60,19 +29,21 @@ body {
   background-image: url(content-bg.png);
   font-family: adelle, sans-serif;//ff-dagny-web-pro;
   color: $theme-color-dark;
-  @include textshadow(0px, 1px, 0, black);
+  @include text-shadow(0px 1px 0 black);
 }
 
 a, a:visited {
   color: $link-color;
   text-decoration: none;
-  @include textshadow(1px, 1px, 0, black);
-  @include transition(all, 0.3s, ease-in-out);
+  @include text-shadow(1px 1px 0 black);
+  @include transition-property(all);
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in-out);
 
   &:hover {
     color: $theme-color-bright;
     @include scale(1.2);
-    @include textshadow(2px, 2px, 0, black);
+    @include text-shadow(2px 2px 0 black);
   }
 }
 
@@ -91,12 +62,12 @@ h1 {
 
 header {
   background: yellow;
-  @include dropshadow(5px, 5px, 5px, black);
+  @include box-shadow(5px 5px 5px black);
 
   background-image: url(header-bg.png);
   height: $header-height;
 
-  text-shadow: 1px 1px 2px black;
+  @include text-shadow(1px 1px 2px black);
 
   margin-bottom: 15px;
 }
@@ -139,10 +110,12 @@ header #logo {
     background-repeat: no-repeat;
     margin: 0 auto;
 
-    @include transition(all, 0.3s, ease-in-out);
+    @include transition-property(all);
+    @include transition-duration(0.3s);
+    @include transition-timing-function(ease-in-out);
 
     color: $theme-color-bright;
-    @include textshadow(7px, 7px, 0px, black);
+    @include text-shadow(7px 7px 0px black);
 
     &:hover {
       @include scale(1.2);
@@ -277,7 +250,7 @@ nav {
 }
 
 .pulsating {
-  @include textshadow(0, 0, 3px, $theme-color-bright);
+  @include text-shadow(0 0 3px $theme-color-bright);
 }
 
 #notifications #instructions {

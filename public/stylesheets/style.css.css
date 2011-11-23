@@ -1,0 +1,344 @@
+/* line 47, ../../app/assets/stylesheets/style.css.scss */
+.clear {
+  clear: both;
+}
+
+/* line 48, ../../app/assets/stylesheets/style.css.scss */
+::selection, ::-moz-selection {
+  background-color: #d2b100;
+  color: black;
+}
+
+/* line 50, ../../app/assets/stylesheets/style.css.scss */
+body, p, ul, li, h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 55, ../../app/assets/stylesheets/style.css.scss */
+h1 {
+  padding-bottom: 0.5;
+}
+
+/* line 57, ../../app/assets/stylesheets/style.css.scss */
+ul {
+  margin-bottom: 1em;
+}
+
+/* line 59, ../../app/assets/stylesheets/style.css.scss */
+body {
+  background-color: #eeeeee;
+  background-image: url(content-bg.png);
+  font-family: adelle, sans-serif;
+  color: #bc9a52;
+  -moz-text-shadow: 0px 1px 0 black;
+  -webkit-text-shadow: 0px 1px 0 black;
+  text-shadow: 0px 1px 0 black;
+}
+
+/* line 67, ../../app/assets/stylesheets/style.css.scss */
+a, a:visited {
+  color: #bc9a52;
+  text-decoration: none;
+  -moz-text-shadow: 1px 1px 0 black;
+  -webkit-text-shadow: 1px 1px 0 black;
+  text-shadow: 1px 1px 0 black;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+/* line 73, ../../app/assets/stylesheets/style.css.scss */
+a:hover, a:visited:hover {
+  color: #d2b100;
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: 1.2;
+  -moz-text-shadow: 2px 2px 0 black;
+  -webkit-text-shadow: 2px 2px 0 black;
+  text-shadow: 2px 2px 0 black;
+}
+
+/* line 80, ../../app/assets/stylesheets/style.css.scss */
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
+/* line 85, ../../app/assets/stylesheets/style.css.scss */
+.container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* header */
+/* line 93, ../../app/assets/stylesheets/style.css.scss */
+header {
+  background: yellow;
+  -moz-box-shadow: 5px 5px 5px black;
+  -webkit-box-shadow: 5px 5px 5px black;
+  box-shadow: 5px 5px 5px black;
+  background-image: url(header-bg.png);
+  height: 165px;
+  text-shadow: 1px 1px 2px black;
+  margin-bottom: 15px;
+}
+
+/* line 105, ../../app/assets/stylesheets/style.css.scss */
+header .starburst {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 729px;
+  margin-left: -364px;
+  height: 165px;
+  background: url(starburst.png);
+  z-index: 0;
+}
+
+/* line 117, ../../app/assets/stylesheets/style.css.scss */
+header .topOptions {
+  margin-top: 7px;
+}
+
+/* line 121, ../../app/assets/stylesheets/style.css.scss */
+header .language {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+/* line 127, ../../app/assets/stylesheets/style.css.scss */
+header .twitter {
+  position: relative;
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+/* line 134, ../../app/assets/stylesheets/style.css.scss */
+header #logo {
+  position: relative;
+  margin-top: 20px;
+}
+/* line 138, ../../app/assets/stylesheets/style.css.scss */
+header #logo h1 {
+  width: 394px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: #d2b100;
+  -moz-text-shadow: 7px 7px 0px black;
+  -webkit-text-shadow: 7px 7px 0px black;
+  text-shadow: 7px 7px 0px black;
+}
+/* line 148, ../../app/assets/stylesheets/style.css.scss */
+header #logo h1:hover {
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: 1.2;
+}
+
+/* Section-scrolling */
+/* line 156, ../../app/assets/stylesheets/style.css.scss */
+#contentBoxMain, .centeredContainer {
+  width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* line 161, ../../app/assets/stylesheets/style.css.scss */
+.contentBox {
+  width: 500px;
+  overflow: hidden;
+}
+
+/* line 166, ../../app/assets/stylesheets/style.css.scss */
+#contentScroll {
+  overflow: auto;
+  width: 10000px;
+  height: 500px;
+}
+
+/* line 172, ../../app/assets/stylesheets/style.css.scss */
+.section {
+  width: 2000px;
+  float: left;
+}
+
+/* Info area */
+/* line 179, ../../app/assets/stylesheets/style.css.scss */
+#navigator {
+  position: absolute;
+  width: 0px;
+  height: 42px;
+  background: #d2b100;
+  z-index: 0;
+}
+
+/* line 187, ../../app/assets/stylesheets/style.css.scss */
+nav {
+  display: block;
+  height: 42px;
+  position: absolute;
+  top: 123px;
+}
+
+/* line 194, ../../app/assets/stylesheets/style.css.scss */
+#info {
+  position: relative;
+  list-style: none;
+  display: inline;
+  width: 100%;
+}
+/* line 200, ../../app/assets/stylesheets/style.css.scss */
+#info li {
+  width: 125px;
+  float: left;
+  height: 2em;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 209, ../../app/assets/stylesheets/style.css.scss */
+#info li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+/* line 216, ../../app/assets/stylesheets/style.css.scss */
+#info li a:hover {
+  color: white;
+}
+
+/* line 224, ../../app/assets/stylesheets/style.css.scss */
+.hovered {
+  color: white;
+}
+
+/* Difficulty selector */
+/* line 230, ../../app/assets/stylesheets/style.css.scss */
+#difficulty {
+  position: relative;
+  list-style: none;
+  display: inline;
+  width: 100%;
+}
+/* line 236, ../../app/assets/stylesheets/style.css.scss */
+#difficulty li {
+  width: 166.667px;
+  float: left;
+  text-align: center;
+  height: 1.75em;
+}
+/* line 242, ../../app/assets/stylesheets/style.css.scss */
+#difficulty li a {
+  display: block;
+}
+
+/* Interactive area */
+/* line 250, ../../app/assets/stylesheets/style.css.scss */
+#controls input[type=button] {
+  padding: 10px 0;
+  margin: 0;
+  width: 100%;
+  margin: 1em 0;
+}
+
+/* line 257, ../../app/assets/stylesheets/style.css.scss */
+#userinput {
+  width: 474px;
+  padding: 7px 5px;
+  margin: 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* line 265, ../../app/assets/stylesheets/style.css.scss */
+.correct {
+  border: 3px solid green;
+}
+
+/* line 269, ../../app/assets/stylesheets/style.css.scss */
+.incorrect {
+  border: 3px solid red;
+}
+
+/* line 273, ../../app/assets/stylesheets/style.css.scss */
+#question {
+  display: none;
+}
+
+/* line 275, ../../app/assets/stylesheets/style.css.scss */
+#notifications {
+  margin-top: 1em;
+  text-align: center;
+}
+
+/* line 280, ../../app/assets/stylesheets/style.css.scss */
+.pulsating {
+  -moz-text-shadow: 0 0 3px #d2b100;
+  -webkit-text-shadow: 0 0 3px #d2b100;
+  text-shadow: 0 0 3px #d2b100;
+}
+
+/* line 284, ../../app/assets/stylesheets/style.css.scss */
+#notifications #instructions {
+  display: none;
+}
+
+/* line 288, ../../app/assets/stylesheets/style.css.scss */
+#hint {
+  display: none;
+}
+
+/* line 290, ../../app/assets/stylesheets/style.css.scss */
+#progressBar {
+  position: relative;
+  width: 500px;
+  height: 2em;
+  margin-bottom: 1em;
+}
+
+/* line 296, ../../app/assets/stylesheets/style.css.scss */
+.pbLabel {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 2em;
+}
+
+/* line 303, ../../app/assets/stylesheets/style.css.scss */
+.button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: .5em 2em .5em;
+  -webkit-border-radius: .5em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* line 315, ../../app/assets/stylesheets/style.css.scss */
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+/* line 320, ../../app/assets/stylesheets/style.css.scss */
+.half-width {
+  position: relative;
+  width: 225px;
+  text-align: center;
+}

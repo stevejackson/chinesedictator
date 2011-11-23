@@ -7,6 +7,7 @@ gem 'pg'
 
 gem 'therubyracer'
 gem 'haml'
+gem 'compass', '>= 0.12.alpha'
 
 # Gems used only for assets and not required
 # in production environments by default.
