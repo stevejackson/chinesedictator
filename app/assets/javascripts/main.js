@@ -32,7 +32,11 @@
   });
 
   $('.hint').click(function() { $('#hint').show(); });
-  $('.next').click(function() { getNextQuestion(); });
+  $('.next').click(function() { getNextQuestion(0); });
+
+  $('.diff1').click(function() { getNextQuestion(1); });
+  $('.diff2').click(function() { getNextQuestion(2); });
+  $('.diff3').click(function() { getNextQuestion(3); });
 
   newQuestion();
 
@@ -186,14 +190,19 @@ function bindKeysComplete() {
 
   $('#userinputwrapper').keypress(function(event) {
     if(event.which == 13) {
-      getNextQuestion();
+      getNextQuestion(0);
     }
   });
 }
 
-function getNextQuestion() {
+function getNextQuestion(difficulty) {
+  if(difficulty == 0) {
+    // grab the difficulty from the existing question
+    difficulty = parseInt($('#question .difficulty').text());
+  }
+
   $.ajax({
-    url: '/question?difficulty=1',
+    url: '/question?difficulty=' + difficulty,
     complete: function() { playAudio(); }
   });
   $('#userinput').val('');
