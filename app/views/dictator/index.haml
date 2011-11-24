@@ -3,19 +3,22 @@
     .container
       %ul#difficulty
         %li
-          %a.diff1{ :href => '#' } Easy
+          %a.diff1{ :href => '#' }
+            = t :easy
         %li
-          %a.diff2{ :href => '#' } Medium
+          %a.diff2{ :href => '#' }
+            = t :medium
         %li
-          %a.diff3{ :href => '#' } Hard
+          %a.diff3{ :href => '#' }
+            = t :hard
 
       .clear
 
       #controls
         .half-width.play
-          %input.controls-button{ :type => 'button', :value => 'Play (Press Enter)' }
+          %input.controls-button{ :type => 'button', :value => "#{t :play}" }
         .half-width.hint
-          %input.controls-button{ :type => 'button', :value => 'Hint [ctrl+enter]' }
+          %input.controls-button{ :type => 'button', :value => "#{t :hint}" }
 
       .clear
 
@@ -31,7 +34,7 @@
         #translationHanzi
         #translationEnglish
         #instructions
-          %input.next.controls-button{ :type => 'button', :value => 'Next [Enter]' }
+          %input.next.controls-button{ :type => 'button', :value => "#{t :next}" }
           
 
       #question
@@ -41,10 +44,10 @@
 #tools.section
   .contentBox
     .container
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta ultrices urna et blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros ac est luctus auctor. Donec vel ligula eget turpis varius imperdiet. Fusce euismod eros ut purus bibendum id tempus nisi sagittis. Nullam rutrum sapien id mauris tincidunt pulvinar. Integer vitae velit ipsum. Quisque risus velit, consequat non auctor ut, congue in risus. Sed mi nisl, porttitor adipiscing elementum vel, blandit dapibus sapien. Sed nec leo dolor.  
+      = t :tools
 
 #about.section
   .contentBox
     .container
-      Duis non turpis nisi. Praesent sodales tortor a est vulputate feugiat. Nam egestas tellus ac erat sollicitudin id aliquet nunc scelerisque. Etiam interdum nisi ut dolor consequat ac consequat nisl viverra. Nullam nisl lectus, fringilla nec tristique vel, semper vitae turpis. Integer sollicitudin feugiat tincidunt. Curabitur et pretium ligula. In interdum ornare nisl nec fringilla. Aenean eget elit nunc. Sed pharetra cursus posuere. Nunc ultrices euismod nibh, vel sagittis lacus lobortis nec. Curabitur elit leo, posuere in faucibus at, euismod ac felis. In hac habitasse platea dictumst. Vestibulum consectetur iaculis vestibulum. Aliquam vestibulum mattis nunc eu hendrerit.  
+      = t :about
 

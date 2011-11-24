@@ -1,3 +1,24 @@
 en:
   header: "Chinese Dictator"
+  twitter: 'Follow me on Twitter.'
+
+  # navigation
+  learn: 'LEARN'
+  tools: 'TOOLS'
+  about: 'ABOUT'
+
+  # learn section
+  easy: 'Easy'
+  medium: 'Medium'
+  hard: 'Hard'
+
+  play: 'Play (Enter)'
+  hint: 'Hint (Ctrl + Enter)'
+  next: 'Next (Enter)'
+
+  # tools section
+  tools: 'okay here'
+
+  # about section
+  about: 'alright finally'
 
