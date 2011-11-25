@@ -5,6 +5,8 @@ tmp/
 .sass-cache/
 /config/database.yml
 db/scraped.csv
+db/file.html
 *#
 *~
 *.swp
+*.dat
