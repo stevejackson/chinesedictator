@@ -10,10 +10,10 @@ Dictator.prototype.sanitize = function(input, keepSpaces) {
   }
   var sanitized = "";
   if(keepSpaces) {
-    var sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。]/gi, '');
+    var sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|：]/gi, '');
   }
   else {
-    var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。]/gi, '');
+    var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。|：]/gi, '');
   }
   return sanitized.toLowerCase();
 }
