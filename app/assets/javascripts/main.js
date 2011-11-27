@@ -3,11 +3,6 @@
 
 
   menuNavigator();
-  $(document).keypress(function(event) {
-    if(event.which == 13) {
-      playAudio();
-    }
-  });
 
   bindKeysNotComplete();
 
@@ -165,10 +160,10 @@ function clearNotificationArea() {
   $('#hint').text('');
 
   $('#notifications #instructions').hide();
-  bindKeysNotComplete();
 }
 
 function bindKeysNotComplete() {
+  alert('here');
   $('#userinputwrapper').unbind('keypress');
 
   $(document).keypress(function(event) {
@@ -182,10 +177,15 @@ function bindKeysNotComplete() {
     else {
       $('#hint').hide();
     }
+
+    if(event.which == 13) {
+      playAudio();
+    }
   });
 }
 
 function bindKeysComplete() {
+  $(document).unbind('keypress');
   $('#userinputwrapper').unbind('keypress');
 
   $('#userinputwrapper').keypress(function(event) {
@@ -210,6 +210,7 @@ function getNextQuestion(difficulty) {
   clearNotificationArea();
 
   $('#userinput').focus();
+  bindKeysNotComplete();
 }
 
 })();
