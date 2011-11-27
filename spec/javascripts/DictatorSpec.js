@@ -149,6 +149,10 @@ describe("Dictator", function() {
 
     dictator.analyze("");
     expect(dictator.hint).toBe("zǎo");
+
+    dictator.dictations = new Array("tài wǎn le 。 wǒ xiǎng zǒu 。");
+    dictator.analyze("tài wǎn le, wǒ xiǎng "); 
+    expect(dictator.hint).toBe("zǒu");
   });
 
 });

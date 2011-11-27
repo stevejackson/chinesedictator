@@ -78,7 +78,7 @@ Dictator.prototype.getHint = function(target, input) {
   // discover where we start to differ from the input.
   var i = 0;
   var beginningOfWord = 0;
-  for(i = 0; i < sanitizedInput.length; i++) {
+  for(i = 0; i <= sanitizedInput.length; i++) {
     if(sanitizedTarget.charAt(i) == ' ') {
       beginningOfWord = i + 1;
     }
