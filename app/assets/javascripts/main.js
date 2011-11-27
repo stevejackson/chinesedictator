@@ -32,6 +32,8 @@
   $('.diff1').click(function() { getNextQuestion(1); });
   $('.diff2').click(function() { getNextQuestion(2); });
   $('.diff3').click(function() { getNextQuestion(3); });
+  $('.diff4').click(function() { getNextQuestion(4); });
+  $('.diff5').click(function() { getNextQuestion(5); });
 
   newQuestion();
 
@@ -163,7 +165,6 @@ function clearNotificationArea() {
 }
 
 function bindKeysNotComplete() {
-  alert('here');
   $('#userinputwrapper').unbind('keypress');
 
   $(document).keypress(function(event) {
