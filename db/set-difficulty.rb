@@ -33,6 +33,11 @@ def fix_pinyin_tones(pinyin)
   pinyin = pinyin.gsub /ǔo/, 'uǒ'
   pinyin = pinyin.gsub /ùo/, 'uò'
 
+  pinyin = pinyin.gsub /īu/, 'iū'
+  pinyin = pinyin.gsub /íu/, 'iú'
+  pinyin = pinyin.gsub /ǐu/, 'iǔ'
+  pinyin = pinyin.gsub /ìu/, 'iù'
+
   pinyin
 end
 
