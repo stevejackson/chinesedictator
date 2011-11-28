@@ -162,6 +162,7 @@ function clearNotificationArea() {
   $('#hint').text('');
 
   $('#notifications #instructions').hide();
+  $('#progressBar .ui-progressbar-value').stop().animate({width:'0px'}, 100);
 }
 
 function bindKeysNotComplete() {
