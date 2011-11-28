@@ -22,6 +22,20 @@ def get_difficulty(num_characters)
   end
 end
 
+def fix_pinyin_tones(pinyin)
+  pinyin = pinyin.gsub /ūi/, 'uī'
+  pinyin = pinyin.gsub /úi/, 'uí'
+  pinyin = pinyin.gsub /ǔi/, 'uǐ'
+  pinyin = pinyin.gsub /ùi/, 'uì'
+
+  pinyin = pinyin.gsub /ūo/, 'uō'
+  pinyin = pinyin.gsub /úo/, 'uó'
+  pinyin = pinyin.gsub /ǔo/, 'uǒ'
+  pinyin = pinyin.gsub /ùo/, 'uò'
+
+  pinyin
+end
+
 cnt1 = 0
 cnt2 = 0
 cnt3 = 0
@@ -50,7 +64,9 @@ CSV.foreach('seeds.csv') do |line|
     line.each do |i|
       i.force_encoding 'utf-8'
     end
-    csv << [difficulty, line[1], line[2], line[3], line[4]]
+
+    fixed_pinyin = fix_pinyin_tones line[4]
+    csv << [difficulty, line[1], line[2], line[3], fixed_pinyin]
   end
 end
 
