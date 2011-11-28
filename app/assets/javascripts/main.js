@@ -36,8 +36,6 @@ $(document).ready(function() {
   $('.diff5').click(function() { getNextQuestion(5); });
 
   newQuestion();
-
-  playAudio();
 });
 
 function playAudio() {
