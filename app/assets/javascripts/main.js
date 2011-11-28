@@ -1,6 +1,6 @@
 (function(){
-    $(document).ready(function() {
 
+$(document).ready(function() {
 
   menuNavigator();
 
@@ -165,35 +165,40 @@ function clearNotificationArea() {
 }
 
 function bindKeysNotComplete() {
-  $('#userinputwrapper').unbind('keypress');
+  $(document).unbind('keypress', handlerComplete);
+  $(document).unbind('keypress', handlerIncomplete);
 
-  $(document).keypress(function(event) {
-    // ctrl + enter, get a hint
-    event.stopPropagation();
-    if(event.which == 10 && event.ctrlKey) {
-      $('#hint').show(); 
-    }
-
-    // anything else, hide the hint
-    else {
-      $('#hint').hide();
-    }
-
-    if(event.which == 13) {
-      playAudio();
-    }
-  });
+  $(document).bind('keypress', handlerIncomplete);
 }
 
 function bindKeysComplete() {
-  $(document).unbind('keypress');
-  $('#userinputwrapper').unbind('keypress');
+  $(document).unbind('keypress', handlerIncomplete);
+  $(document).unbind('keypress', handlerComplete);
 
-  $('#userinputwrapper').keypress(function(event) {
-    if(event.which == 13) {
-      getNextQuestion(0);
-    }
-  });
+  $(document).bind('keypress', handlerComplete);
+}
+
+function handlerComplete(event) {
+  if(event.which == 13) {
+    getNextQuestion(0);
+  }
+}
+
+function handlerIncomplete(event) {
+  // ctrl + enter, get a hint
+  event.stopPropagation();
+  if(event.which == 10 && event.ctrlKey) {
+    $('#hint').show(); 
+  }
+
+  // anything else, hide the hint
+  else {
+    $('#hint').hide();
+  }
+
+  if(event.which == 13) {
+    playAudio();
+  }
 }
 
 function getNextQuestion(difficulty) {
@@ -202,16 +207,17 @@ function getNextQuestion(difficulty) {
     difficulty = parseInt($('#question .difficulty').text());
   }
 
+  clearNotificationArea();
+
+  $('#userinput').focus();
+  $('#userinput').val('');
+  bindKeysNotComplete();
+
   $.ajax({
     url: '/question?difficulty=' + difficulty,
     complete: function() { playAudio(); }
   });
-  $('#userinput').val('');
 
-  clearNotificationArea();
-
-  $('#userinput').focus();
-  bindKeysNotComplete();
 }
 
 })();
