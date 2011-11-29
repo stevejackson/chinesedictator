@@ -309,3 +309,20 @@ nav {
 .hint {
   float: right;
 }
+
+#tutorial .content {
+  height: 170px;
+  margin-bottom: 20px;
+}
+
+#tutorial .showHide {
+  padding: 8px;
+  height: 2em;
+  text-align: center;
+  cursor: pointer;
+  
+  a, a:visited, a:hover {
+    border-bottom: 1px dashed $theme-color-bright;
+    padding-bottom: 3px;
+  }
+}

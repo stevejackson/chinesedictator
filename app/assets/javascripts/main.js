@@ -36,7 +36,25 @@ $(document).ready(function() {
   $('.diff5').click(function() { getNextQuestion(5); });
 
   newQuestion();
+
+  $('#tutorial .showHide').click(function() { hideTutorial(); });
 });
+
+function hideTutorial() {
+  $('#tutorial .showHide').html('<a>&#x25BE;&nbsp; Show tutorial</a>');
+  $('#tutorial .content').slideUp('slow');
+
+  $('#tutorial .showHide').off();
+  $('#tutorial .showHide').click(function() { showTutorial(); });
+}
+
+function showTutorial() {
+  $('#tutorial .showHide').html('<a>&#x25B4;&nbsp; Hide tutorial</a>');
+  $('#tutorial .content').slideDown('slow');
+
+  $('#tutorial .showHide').off();
+  $('#tutorial .showHide').click(function() { hideTutorial(); });
+}
 
 function playAudio() {
   $('#audio').get(0).play();
