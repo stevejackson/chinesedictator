@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-require 'csv'
-
+require 'csv' 
 def count_hanzi(input_hanzi)
   input_hanzi.force_encoding 'utf-8'
   no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '');
@@ -41,6 +40,18 @@ def fix_pinyin_tones(pinyin)
   pinyin
 end
 
+def remove?(pinyin)
+  bad_pinyin = ['āyō', 'āyōu', 'āyiōu', 'āiyō', 'āiyā' 'āi', 'ō', 'āyòu', 'āiyà', 'ài', 'àiya', 'āyā']
+
+  pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '');
+
+  if bad_pinyin.include? pinyin
+    return true
+  end
+
+  false
+end
+
 cnt1 = 0
 cnt2 = 0
 cnt3 = 0
@@ -48,8 +59,16 @@ cnt4 = 0
 cnt5 = 0
 
 CSV.foreach('seeds.csv') do |line|
+  line.each do |i|
+    i.force_encoding 'utf-8'
+  end
+
   hanzis = count_hanzi(line[3])
   difficulty = get_difficulty(hanzis) 
+
+  fixed_pinyin = fix_pinyin_tones line[4]
+
+  next if remove? fixed_pinyin
 
   case difficulty
   when 1
@@ -66,11 +85,7 @@ CSV.foreach('seeds.csv') do |line|
 
   CSV.open('seeds2.csv', 'a') do |csv|
     difficulty = difficulty.to_s.force_encoding 'utf-8'
-    line.each do |i|
-      i.force_encoding 'utf-8'
-    end
 
-    fixed_pinyin = fix_pinyin_tones line[4]
     csv << [difficulty, line[1], line[2], line[3], fixed_pinyin]
   end
 end
