@@ -16,6 +16,10 @@ $nav-height: 42px;
 .clear { clear: both; }
 ::selection, ::-moz-selection { background-color: $theme-color-bright; color: black; }
 
+// Firefox hacks
+a:focus { outline: none; }
+button:-moz-focus-inner { border: 0; }
+
 body, p, ul, li, h1, h2, h3 {
   padding: 0;
   margin: 0;
@@ -43,13 +47,13 @@ a, a:visited {
 
   &:hover {
     color: $theme-color-bright;
-    @include scale(1.2);
     @include text-shadow(2px 2px 0 black);
   }
+
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.6em;
   text-align: center;
 }
 
@@ -106,7 +110,7 @@ header #logo {
   margin-top: 20px;
 
   h1 {
-    width: 394px;
+    //width: 394px;
     background-repeat: no-repeat;
     margin: 0 auto;
 
@@ -186,6 +190,7 @@ nav {
       padding-top: 10px;
 
       &:hover {
+        @include scale(1.2);
         color: white;
       }
     }
@@ -213,6 +218,10 @@ nav {
 
     a {
       display: block;
+
+      &:hover {
+        @include scale(1.2);
+      }
     }
   }
 }
@@ -276,6 +285,7 @@ nav {
   font-size: 1em;
   padding: .5em 2em .5em;
   width: 240px;
+  color: black;
 
   padding: 10px 0;
   margin: 0;
@@ -322,8 +332,13 @@ nav {
   text-align: center;
   cursor: pointer;
   
-  a, a:visited, a:hover {
+  a, a:visited {
     border-bottom: 1px dashed $theme-color-bright;
-    padding-bottom: 3px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
+    &:hover {
+      @include scale(1);
+    }
   }
 }
