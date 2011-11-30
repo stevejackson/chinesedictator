@@ -3,17 +3,16 @@ function Dictator() {
   this.completed = false;
 }
 
-
 Dictator.prototype.sanitize = function(input, keepSpaces) {
   if(input == undefined) {
     input = ' ';
   }
   var sanitized = "";
   if(keepSpaces) {
-    var sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|：]/gi, '');
+    sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|：]/gi, '');
   }
   else {
-    var sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。|：]/gi, '');
+    sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。|：]/gi, '');
   }
   return sanitized.toLowerCase();
 }
@@ -74,7 +73,7 @@ Dictator.prototype.matchPartialSanitizedToTarget = function(target, partialSanit
 Dictator.prototype.getHint = function(target, input) {
   var sanitizedTarget = this.sanitize(target, true);
   var sanitizedInput = this.sanitize(input, true);
-  
+
   // discover where we start to differ from the input.
   var i = 0;
   var beginningOfWord = 0;
