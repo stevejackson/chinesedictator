@@ -63,7 +63,8 @@
 
       #question
         = render :partial => '/dictator/question'
-      %audio#audio{:src => @question.uri }
+      #audioContent
+        %audio#audio{:src => @question.uri }
 
 #tools.section
   .contentBox

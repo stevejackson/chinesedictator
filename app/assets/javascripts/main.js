@@ -1,6 +1,5 @@
 (function(){
 
-
 $(document).ready(function() {
 
   menuNavigator();
@@ -58,9 +57,7 @@ function showTutorial() {
 }
 
 function playAudio() {
-  //$('#audio').get(0).play();
   var player = new MediaElementPlayer('#audio');
-  $('#mep_0').show();
   player.pause();
   player.play();
 }
