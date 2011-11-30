@@ -1,5 +1,6 @@
 (function(){
 
+
 $(document).ready(function() {
 
   menuNavigator();
@@ -38,6 +39,7 @@ $(document).ready(function() {
   newQuestion();
 
   $('#tutorial .showHide').click(function() { hideTutorial(); });
+
 });
 
 function hideTutorial() {
@@ -57,9 +59,13 @@ function showTutorial() {
 }
 
 function playAudio() {
-  var player = new MediaElementPlayer('#audio');
-  player.pause();
-  player.play();
+  var newSource = $('#questionuri').text();
+  $('#audio').attr('src', newSource);
+
+  MediaElement('audio', { success: function(me) {
+    me.play();
+  }});
+
 }
 
 // clear all menu selections, and mark the given item as selected
@@ -207,7 +213,7 @@ function handlerIncomplete(event) {
   // ctrl + enter, get a hint
   event.stopPropagation();
   if(event.which == 10 && event.ctrlKey) {
-    $('#hint').show(); 
+    $('#hint').show();
   }
 
   // anything else, hide the hint
