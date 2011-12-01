@@ -41,7 +41,7 @@ def fix_pinyin_tones(pinyin)
 end
 
 def remove?(pinyin)
-  bad_pinyin = ['ā', 'āyō', 'āyōu', 'āyiōu', 'āiyō', 'āiyā' 'āi', 'ō', 'āyòu', 'āiyà', 'ài', 'àiya', 'āyā']
+  bad_pinyin = ['ā', 'āyō', 'āyōu', 'āyiōu', 'āiyō', 'āiyā' 'āi', 'ō', 'āyòu', 'āiyà', 'ài', 'àiya', 'āyā', 'hēi']
 
   pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '');
 
