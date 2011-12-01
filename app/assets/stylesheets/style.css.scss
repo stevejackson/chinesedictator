@@ -37,6 +37,9 @@ body {
   @include text-shadow(0px 1px 0 black);
 }
 
+p { line-height: 1.5em; }
+#tools li { padding-bottom: 1em; }
+
 a, a:visited {
   color: $link-color;
   text-decoration: none;
@@ -50,6 +53,10 @@ a, a:visited {
     @include text-shadow(2px 2px 0 black);
   }
 
+}
+
+#tools a, #tools a:visited, #about a, #about a:visited {
+  border-bottom: 1px dashed $theme-color-bright;
 }
 
 h1 {

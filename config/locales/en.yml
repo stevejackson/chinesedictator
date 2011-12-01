@@ -19,8 +19,37 @@ en:
   next: 'Next (Enter)'
 
   # tools section
-  tools: 'okay here'
+  tools: |
+    There are all kinds of cool resources out there for learning Chinese.
+    Here's a few of my favorite - let me know if you've got something!
+    <br/><br/>
+    <ul>
+    <li><a href="http://skritter.com">Skritter</a> - Skritter is the
+    best way to learn to write characters.</li>
+    <li><a href="http://chinesepod.com">ChinesePod</a> - ChinesePod is
+    a comprehensive learning site, with a huge library of podcasts. The
+    data from this site is pulled from them!</li>
+    <li><a href="http://popupchinese.com">Popup Chinese</a> - Another cool
+    podcast site.</li>
+    <li><a href="http://hackingchinese.com">Hacking Chinese</a> - Blog
+    with a lot of really solid foundational tips on how to study Chinese
+    efficiently.</li>
+    </ul>
 
   # about section
-  about: 'alright finally'
+  about: |
+    Chinese Dictator is a tool to help beginning learners
+    recognize syllables and tones.
+    <br/><br/>
 
+    It was made by <a href="http://sjackson.net">Steve Jackson</a>,
+    who you can e-mail with questions at steven.j.jackson@gmail.com,
+    or <a href="http://twitter.com/_sjackson">Follow him on Twitter.</a>
+    <br/><br/>
+
+    This project is open source - you can check it out
+    <a href="http://github.com/stevejackson/chinesedictator">on github.</a>
+    <br/><br/>
+
+    The data scraped from <a href="http://chinesepod.com">ChinesePod</a>
+    with permission.
