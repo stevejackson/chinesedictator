@@ -62,11 +62,10 @@ Dictator.prototype.matchPartialSanitizedToTarget = function (target, partialSani
     partialTarget;
 
   for (i = target.length; i > 0; i -= 1) {
+    partialTarget = target.substring(0, i);
     targetSanitized = this.sanitize(partialTarget, false);
-    partialTarget = target.substring(0, i + 3);
 
     if (targetSanitized === partialSanitized) {
-    alert(partialTarget);
       return partialTarget;
     }
   }
@@ -141,7 +140,6 @@ Dictator.prototype.analyze = function (input) {
 
       correctSoFarSanitized = sanitizedInput.substring(0, this.failureIndex);
       this.correctSoFar = this.matchPartialSanitizedToTarget(this.dictationTarget, correctSoFarSanitized);
-      //alert(this.correctSoFar);
       this.hint = this.getHint(this.dictationTarget, input);
     }
     else if (largestFailureIndex === 0) {
