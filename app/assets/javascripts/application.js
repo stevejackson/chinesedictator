@@ -8,7 +8,7 @@
 //= require jquery-ui
 //= require jquery.scrollTo-min
 //= require jquery.pinyin
-//= require mediaelement
+//= require mediaelement.min
 //= require dictator
 //= require main
 //= require_self
