@@ -32,7 +32,7 @@ ul { margin-bottom: 1em; }
 body {
   background-color: $background;
   background-image: url(content-bg.png);
-  font-family: adelle, sans-serif;//ff-dagny-web-pro;
+  font-family: ff-dagny-web-pro, sans-serif;
   color: $theme-color-dark;
   @include text-shadow(0px 1px 0 black);
 }
@@ -315,7 +315,7 @@ nav {
 
 .half-width {
   position: relative;
-  width: 250px;
+  width: 249px;
   text-align: center;
 }
 
@@ -327,16 +327,17 @@ nav {
   float: right;
 }
 
-#tutorial .content {
-  height: 170px;
+#dropdown #tutorial {
   margin-bottom: 20px;
 }
 
-#tutorial .showHide {
-  padding: 8px;
+#dropdown .showHideTutorial, .showHideSyllable  {
+  padding-top: 12px;
+  margin-bottom: 20px;
   height: 2em;
   text-align: center;
   cursor: pointer;
+  width: 249px;
   
   a, a:visited {
     border-bottom: 1px dashed $theme-color-bright;
@@ -348,3 +349,23 @@ nav {
     }
   }
 }
+
+#syllables {
+  display: none;
+  font-size: 1em;
+
+  label {
+    @include text-shadow(0 0 0 white);
+  }
+
+  #initials, #finals {
+    width: 240px;
+    text-align: center;
+  }
+
+  #initials { float: left; }
+  #finals { float: right; }
+}
+
+.showHideTutorial { float: left; }
+.showHideSyllable { float: right; }

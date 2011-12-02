@@ -2,6 +2,20 @@
 
   $(document).ready(function() {
 
+    $('.initialset').buttonset();
+    enableAll('.initialset input');
+    enableAll('.finalset input');
+
+    $('#initials #initial-all').button();
+    $('#initials #initial-none').button();
+    $('#finals #final-all').button();
+    $('#finals #final-none').button();
+
+    $('#initials #initial-all').click(function() { enableAll('.initialset input'); });
+    $('#initials #initial-none').click(function() { disableAll('.initialset input'); });
+    $('#finals #final-none').click(function() { enableAll('.finalset input'); });
+    $('#finals #final-none').click(function() { disableAll('.finalset input'); });
+
     menuNavigator();
 
     bindKeysNotComplete();
@@ -37,24 +51,43 @@
 
     newQuestion();
 
-    $('#tutorial .showHide').click(function() { hideTutorial(); });
+    $('#dropdown .showHideTutorial').click(function() { hideTutorial(); });
+    $('#dropdown .showHideSyllable').click(function() { showSyllables(); });
 
   });
 
   function hideTutorial() {
-    $('#tutorial .showHide').html('<a>&#x25BE;&nbsp; Show tutorial</a>');
-    $('#tutorial .content').slideUp('slow');
+    $('#dropdown .showHideTutorial').html('<a>&#x25BE;&nbsp; Show tutorial</a>');
+    $('#dropdown #tutorial').slideUp('slow');
 
-    $('#tutorial .showHide').off();
-    $('#tutorial .showHide').click(function() { showTutorial(); });
+    $('#dropdown .showHideTutorial').off();
+    $('#dropdown .showHideTutorial').click(function() { showTutorial(); });
   }
 
   function showTutorial() {
-    $('#tutorial .showHide').html('<a>&#x25B4;&nbsp; Hide tutorial</a>');
-    $('#tutorial .content').slideDown('slow');
+    hideSyllables();
+    $('#dropdown .showHideTutorial').html('<a>&#x25B4;&nbsp; Hide tutorial</a>');
+    $('#dropdown #tutorial').slideDown('slow');
 
-    $('#tutorial .showHide').off();
-    $('#tutorial .showHide').click(function() { hideTutorial(); });
+    $('#dropdown .showHideTutorial').off();
+    $('#dropdown .showHideTutorial').click(function() { hideTutorial(); });
+  }
+
+  function showSyllables() {
+    hideTutorial();
+    $('#dropdown .showHideSyllable').html('<a>&#x25B4;&nbsp; Hide syllable filters</a>');
+    $('#dropdown #syllables').slideDown('slow');
+
+    $('#dropdown .showHideSyllable').off();
+    $('#dropdown .showHideSyllable').click(function() { hideSyllables(); });
+  }
+
+  function hideSyllables() {
+    $('#dropdown .showHideSyllable').html('<a>&#x25BE;&nbsp; Show syllable filters</a>');
+    $('#dropdown #syllables').slideUp('slow');
+
+    $('#dropdown .showHideSyllable').off();
+    $('#dropdown .showHideSyllable').click(function() { showSyllables(); });
   }
 
   function playAudio() {
@@ -243,4 +276,13 @@
     });
   }
 
+  function enableAll(selector) {
+    $(selector).attr('checked', true);
+    $(selector).button('enable').button('refresh');
+  }
+
+  function disableAll(selector) {
+    $(selector).attr('checked', false);
+    $(selector).button('enable').button('refresh');
+  }
 })();

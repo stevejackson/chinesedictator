@@ -1,8 +1,9 @@
 #learn.section
   .contentBox
     .container
-      #tutorial
-        .content
+
+      #dropdown
+        #tutorial
           %p 
             Hey there! Chinese Dictator will help improve your Chinese listening skills. 
 
@@ -16,9 +17,92 @@
               word or tone.
             %li
               Once you've successfully completed a dictation, press Enter to move on.
+            
+          %p If you want to study specific syllables that are challenging you, click 'Show syllable filters'.
 
-        %p.showHide 
+        #syllables
+          #initials
+            %h2 Initials
+            %br
+            %input{ type: 'button', id: 'initial-all', value: 'All' }
+            %input{ type: 'button', id: 'initial-none', value: 'None' }
+            %br
+            %br
+
+            .initialset
+              %input{ type: 'checkbox', id: 'initial1' }
+              %label{ for: 'initial1' } b
+              %input{ type: 'checkbox', id: 'initial2' }
+              %label{ for: 'initial2' } p
+              %input{ type: 'checkbox', id: 'initial3' }
+              %label{ for: 'initial3' } m
+              %input{ type: 'checkbox', id: 'initial4' }
+              %label{ for: 'initial4' } f
+              %input{ type: 'checkbox', id: 'initial5' }
+              %label{ for: 'initial5' } d
+              %input{ type: 'checkbox', id: 'initial6' }
+              %label{ for: 'initial6' } t
+            .initialset
+              %input{ type: 'checkbox', id: 'initial7' }
+              %label{ for: 'initial7' } n
+              %input{ type: 'checkbox', id: 'initial8' }
+              %label{ for: 'initial8' } l
+              %input{ type: 'checkbox', id: 'initial9' }
+              %label{ for: 'initial9' } g
+              %input{ type: 'checkbox', id: 'initial10' }
+              %label{ for: 'initial10' } k
+              %input{ type: 'checkbox', id: 'initial11' }
+              %label{ for: 'initial11' } h
+              %input{ type: 'checkbox', id: 'initial12' }
+              %label{ for: 'initial12' } j
+            .initialset
+              %input{ type: 'checkbox', id: 'initial13' }
+              %label{ for: 'initial13' } q
+              %input{ type: 'checkbox', id: 'initial14' }
+              %label{ for: 'initial14' } x
+              %input{ type: 'checkbox', id: 'initial15' }
+              %label{ for: 'initial15' } zh
+              %input{ type: 'checkbox', id: 'initial16' }
+              %label{ for: 'initial16' } ch
+              %input{ type: 'checkbox', id: 'initial17' }
+              %label{ for: 'initial17' } sh
+              %input{ type: 'checkbox', id: 'initial18' }
+              %label{ for: 'initial18' } r
+            .initialset
+              %input{ type: 'checkbox', id: 'initial19' }
+              %label{ for: 'initial19' } z
+              %input{ type: 'checkbox', id: 'initial20' }
+              %label{ for: 'initial20' } c
+              %input{ type: 'checkbox', id: 'initial21' }
+              %label{ for: 'initial21' } s
+
+
+
+          #finals
+            %h2 Finals
+            %br
+            %input{ type: 'button', id: 'final-all', value: 'All' }
+            %input{ type: 'button', id: 'final-none', value: 'None' }
+            %br
+            %br
+
+            #finalset
+              %input{ type: 'checkbox', id: 'check1' }
+              %label{ for: 'check1' } aiya
+              %input{ type: 'checkbox', id: 'check2' }
+              %label{ for: 'check2' } aiya
+              %input{ type: 'checkbox', id: 'check3' }
+              %label{ for: 'check3' } aiya
+          .clear
+
+
+        %p.showHideTutorial
           %a &#x25B4;&nbsp; Hide tutorial
+        %p.showHideSyllable
+          %a &#x25B4;&nbsp; Show syllable filters
+
+      .clear
+
       %ul#difficulty
         %li
           %a.diff1{ :href => '#' }
@@ -60,7 +144,6 @@
         #instructions
           %input.next.controls-button{ :type => 'button', :value => "#{t :next}" }
           
-
       #question
         = render :partial => '/dictator/question'
       #audioContent
