@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 require 'csv' 
+require 'ting'
+
 def count_hanzi(input_hanzi)
   input_hanzi.force_encoding 'utf-8'
   no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '');
@@ -83,10 +85,12 @@ CSV.foreach('seeds.csv') do |line|
     cnt5 = cnt5 + 1
   end
 
+  spaced_pinyin = Pinyin.t(line[3])
+
   CSV.open('seeds2.csv', 'a') do |csv|
     difficulty = difficulty.to_s.force_encoding 'utf-8'
 
-    csv << [difficulty, line[1], line[2], line[3], fixed_pinyin]
+    csv << [difficulty, line[1], line[2], line[3], fixed_pinyin, spaced_pinyin]
   end
 end
 

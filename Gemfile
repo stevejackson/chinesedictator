@@ -28,5 +28,6 @@ group :test, :development do
 
   gem 'nokogiri'
   gem 'ting', git: 'git@github.com:stevejackson/ting.git'
+  gem 'chinese_pinyin'
 end
 
