@@ -3,8 +3,7 @@
   $(document).ready(function() {
 
     $('.initialset').buttonset();
-    enableAll('.initialset input');
-    enableAll('.finalset input');
+    $('.finalset').buttonset();
 
     $('#initials #initial-all').button();
     $('#initials #initial-none').button();
@@ -13,7 +12,7 @@
 
     $('#initials #initial-all').click(function() { enableAll('.initialset input'); });
     $('#initials #initial-none').click(function() { disableAll('.initialset input'); });
-    $('#finals #final-none').click(function() { enableAll('.finalset input'); });
+    $('#finals #final-all').click(function() { enableAll('.finalset input'); });
     $('#finals #final-none').click(function() { disableAll('.finalset input'); });
 
     menuNavigator();

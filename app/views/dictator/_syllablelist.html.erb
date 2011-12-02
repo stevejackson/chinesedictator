@@ -1,0 +1,14 @@
+<% divtag = "<div class=\"#{prefix}set\">".html_safe %>
+<%= divtag %>
+<% set.each_with_index do |content, index| %>
+  <% if index % 5 == 0 %>
+    </div>
+    <%= divtag %>
+  <% end %>
+
+  <%= check_box_tag "#{prefix}_#{content}", 'no', false, id: "#{prefix}_#{content}" %>
+  <% labelfor = "<label for=\"#{prefix}_#{content}\">#{content}</label>".html_safe %>
+  <%= labelfor %>
+
+<% end %>
+</div>
