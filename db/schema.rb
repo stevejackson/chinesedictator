@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101022101) do
+ActiveRecord::Schema.define(:version => 20111203193214) do
 
   create_table "questions", :force => true do |t|
     t.string   "sentence"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20111101022101) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uri"
+  end
+
+  create_table "syllables", :force => true do |t|
+    t.string   "initial"
+    t.string   "final"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
   end
 
   create_table "translations", :force => true do |t|

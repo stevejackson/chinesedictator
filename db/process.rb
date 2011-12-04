@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 require 'csv' 
-require 'ting'
+#require 'ting'
+require 'chinese_pinyin'
 
 def count_hanzi(input_hanzi)
   input_hanzi.force_encoding 'utf-8'

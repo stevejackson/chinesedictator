@@ -3,19 +3,23 @@ require 'spec_helper'
 describe Question do
 
   before :each do
-    @q1 = Factory :question_with_translation1
-    @q2 = Factory :question_with_translation2
+    @question = Factory :question_with_translations
   end
 
   it "should have data" do
-    @q1.should respond_to :difficulty
-    @q1.should respond_to :sentence
-    @q1.should respond_to :uri
+    @question.should respond_to :difficulty
+    @question.should respond_to :sentence
+    @question.should respond_to :uri
   end
 
   it "should get associated translations" do
-    q = Question.find(@q1)
-    q.translations.count.should == 1
+    q = Question.find(@question)
+    q.translations.count.should == 3
+  end
+
+  it "should have associated syllables" do
+    q = Question.find(@question)
+    q.syllables.count.should == 2
   end
 
 end

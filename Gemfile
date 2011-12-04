@@ -27,7 +27,7 @@ group :test, :development do
   gem 'jasmine-rails'
 
   gem 'nokogiri'
-  gem 'ting', git: 'git@github.com:stevejackson/ting.git'
+  #gem 'ting', git: 'git@github.com:stevejackson/ting.git'
   gem 'chinese_pinyin'
 end
 

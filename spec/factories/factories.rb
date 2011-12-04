@@ -1,37 +1,38 @@
 # encoding: utf-8
 
-Factory.define :question1, :class => Question do |q|
-  q.sentence "Hello"
-  q.difficulty 1
-  q.uri "testing/test.mp3"
-end
+FactoryGirl.define do
 
-Factory.define :translation1, :class => Translation do |t|
-  t.language "Pinyin"
-  t.sentence "nǐ hǎo"
-  t.association :question, :factory => :question1
-end
-
-Factory.define :question_with_translation1, :parent => :question1 do |question|
-  question.after_create do |a|
-    Factory :translation1, :question => a
+  factory :question do |q|
+    q.sentence "Hello"
+    q.difficulty 1
+    q.uri "testing/test.mp3"
   end
-end
 
-Factory.define :question2, :class => Question do |q|
-  q.sentence "How are you?"
-  q.difficulty 1
-  q.uri "testing/test2.mp3"
-end
-
-Factory.define :translation2, :class => Translation do |t|
-  t.language "Pinyin"
-  t.sentence "nǐ hǎo ma?"
-  t.association :question, :factory => :question2
-end
-
-Factory.define :question_with_translation2, :parent => :question2 do |question|
-  question.after_create do |a|
-    Factory :translation2, :question => a
+  factory :question_with_translations, :parent => :question do |question|
+    question.after_create { |q| 
+      Factory :translation, :question => q
+      Factory :translation, :question => q, :sentence => "你好", :language => 'Hanzi'
+      Factory :translation, :question => q, :sentence => "ni hao", :language => 'spaced_pinyin'
+    }
   end
+
+  factory :question_with_translations_syllable, :parent => :question do |question|
+    question.sentence 'Now'
+    question.after_create { |q| 
+      Factory :translation, :question => q, :sentence => "xian zai", :language => 'spaced_pinyin'
+    }
+  end
+
+  factory :translation do |t|
+    t.language 'Pinyin'
+    t.sentence 'nǐ hǎo'
+
+    question
+  end
+
+  factory :syllable do |s|
+    s.initial 'n'
+    s.final 'i'
+  end
+
 end
