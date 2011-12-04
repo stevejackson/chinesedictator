@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module SyllableGenerator
 
   InitialSet = [
@@ -5,6 +7,15 @@ module SyllableGenerator
     'p', 'm', 'f', 'd', 't',
     'n', 'l', 'g', 'k', 'h', 'j',
     'q', 'x', 'r', 'z', 'c', 's'
+  ]
+
+  FinalSet = [
+    'a', 'o', 'e', 'al', 'el', 'ao',
+    'ou', 'an', 'ang', 'en', 'eng', 'er',
+    'u', 'ua', 'uo', 'uai', 'ul', 'uan',
+    'uang', 'un', 'ueng', 'ong', 'i', 'ia',
+    'ie', 'iao', 'iu', 'ian', 'iang', 'in',
+    'ing', 'ü', 'üe', 'üan', 'ün', 'iong'
   ]
 
   class FullSyllable

@@ -30,12 +30,7 @@
             %br
             %br
 
-            = render :partial => 'syllablelist', 
-              locals: {:set => ['b', 'p', 'm', 'f', 'd', 't',
-              'n', 'l', 'g', 'k', 'h', 'j',
-              'q', 'x', 'zh', 'ch', 'sh', 'r',
-              'z', 'c', 's'],
-              :prefix => 'initial'}
+            = render_syllable_list('initial')
 
           #finals
             %h2 Finals
@@ -45,14 +40,7 @@
             %br
             %br
 
-            = render :partial => 'syllablelist', 
-              locals: {:set => ['a', 'o', 'e', 'al', 'el', 'ao',
-              'ou', 'an', 'ang', 'en', 'eng', 'er',
-              'u', 'ua', 'uo', 'uai', 'ul', 'uan',
-              'uang', 'un', 'ueng', 'ong', 'i', 'ia',
-              'ie', 'iao', 'iu', 'ian', 'iang', 'in',
-              'ing', 'ü', 'üe', 'üan', 'ün', 'iong'],
-              :prefix => 'final'}
+            = render_syllable_list('final')
 
           .clear
 

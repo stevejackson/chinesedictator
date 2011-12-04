@@ -269,8 +269,30 @@
     $('#userinput').val('');
     bindKeysNotComplete();
 
+    var initialsArray = new Array();
+    $('.initialset label').each(function() {
+      if($(this).attr('aria-pressed') == 'true') {
+        var content = $(this).find('span').text();
+        console.log(content);
+        initialsArray.push(content);
+      }
+    });
+
+    var finalsArray = new Array();
+    $('.finalset label').each(function() {
+      if($(this).attr('aria-pressed') == 'true') {
+        var content = $(this).find('span').text();
+        console.log(content);
+        finalsArray.push(content);
+      }
+    });
+
+    var builtUrl = '/question?difficulty=' + difficulty +
+          '&initials=' + JSON.stringify(initialsArray) +
+          '&finals=' + JSON.stringify(finalsArray);
+
     $.ajax({
-      url: '/question?difficulty=' + difficulty,
+      url: builtUrl,
       complete: function() { playAudio(); }
     });
   }
