@@ -6,8 +6,7 @@ module DictatorHelper
   def render_syllable_list(prefix)
     set = prefix == 'final' ? FinalSet : InitialSet;
 
-    str = ""
-    str += "<div class=\"#{prefix}set\">"
+    str = "<div class=\"#{prefix}set\">"
     set.each_with_index do |content, index|
       if index % 5 == 0
         str += "</div>"
