@@ -1,12 +1,15 @@
 # encoding: utf-8
 
 require 'csv' 
-#require 'ting'
 require 'chinese_pinyin'
+
+def sanitize_keep_spaces(input)
+  input.gsub(/[\?|\!|\,|\.|！|？|，|。|：]/, '')
+end
 
 def count_hanzi(input_hanzi)
   input_hanzi.force_encoding 'utf-8'
-  no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '');
+  no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '')
   no_spaces.length
 end
 
@@ -46,7 +49,7 @@ end
 def remove?(pinyin)
   bad_pinyin = ['ā', 'āyō', 'āyōu', 'āyiōu', 'āiyō', 'āiyā' 'āi', 'ō', 'āyòu', 'āiyà', 'ài', 'àiya', 'āyā', 'hēi']
 
-  pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '');
+  pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '')
 
   if bad_pinyin.include? pinyin
     return true
@@ -87,6 +90,9 @@ CSV.foreach('seeds.csv') do |line|
   end
 
   spaced_pinyin = Pinyin.t(line[3])
+  puts spaced_pinyin
+  spaced_pinyin = sanitize_keep_spaces(spaced_pinyin)
+  puts spaced_pinyin
 
   CSV.open('seeds2.csv', 'a') do |csv|
     difficulty = difficulty.to_s.force_encoding 'utf-8'
