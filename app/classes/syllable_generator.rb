@@ -6,16 +6,16 @@ module SyllableGenerator
     'zh', 'ch', 'sh', 'b', 
     'p', 'm', 'f', 'd', 't',
     'n', 'l', 'g', 'k', 'h', 'j',
-    'q', 'x', 'r', 'z', 'c', 's'
+    'q', 'x', 'r', 'z', 'c', 's',
+    'w', 'y', 'a', 'e', 'o'
   ]
 
   FinalSet = [
-    'a', 'o', 'e', 'al', 'el', 'ao',
-    'ou', 'an', 'ang', 'en', 'eng', 'er',
-    'u', 'ua', 'uo', 'uai', 'ul', 'uan',
-    'uang', 'un', 'ueng', 'ong', 'i', 'ia',
-    'ie', 'iao', 'iu', 'ian', 'iang', 'in',
-    'ing', 'ü', 'üe', 'üan', 'ün', 'iong'
+    'an','ang','ao','e','ei','en','eng',
+    'i','ia','ian','iang','iao','ie',
+    'in','ing','iong','iu','n','ng','o',
+    'ong','ou','r','u','ua','uai','uan',
+    'uang','ue','ui','un','uo','ü','üe'
   ]
 
   class FullSyllable

@@ -3,8 +3,9 @@
 require 'nokogiri'
 require 'open-uri'
 
-doc = Nokogiri::HTML(open('http://www.archchinese.com/chinese_pinyin.html'))
+require '../app/classes/syllable_generator'
 
+doc = Nokogiri::HTML(open('http://www.archchinese.com/chinese_pinyin.html'))
 
 syllables = []
 doc.css('.pinyintable tr td a').each do |link|
@@ -13,10 +14,33 @@ doc.css('.pinyintable tr td a').each do |link|
   next if syllable.nil?
   syllable.strip
   next if syllable.empty? or syllable == ' '
-  syllable.gsub "'", ""
+  syllable = syllable.gsub "\'", ""
 
-  syllables << link['onclick'].slice(/'.+?'/)
+  syllables << "'" + syllable + "'"
 end
 
-puts syllables
-puts syllables.count
+File.open('syllables.txt', 'w') do |f|
+
+  f.print '['
+  f.print "'" + syllables.join(',') + "
+  f.print ']'
+
+  f.puts ''
+  f.puts ''
+
+  f.print '['
+
+  result = syllables.map do |s| 
+    fs = SyllableGenerator::FullSyllable.new(s)
+    "'" + fs.final.gsub('v', 'ü') + "'"
+  end
+  result.uniq!
+
+  puts result
+  puts result.count
+  result = result.sort
+
+  f.print '[' + result.join(',') + ']'
+
+end
+

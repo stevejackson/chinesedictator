@@ -1,10 +1,35 @@
 # encoding: utf-8
 
+require 'nokogiri'
+require 'open-uri'
 require 'csv' 
 require 'chinese_pinyin'
 
+require '../app/classes/syllable_generator'
+
+doc = Nokogiri::HTML(open('http://www.archchinese.com/chinese_pinyin.html'))
+
+syllables = []
+
+doc.css('.pinyintable tr td a').each do |link|
+  syllable = link['onclick'].slice(/'.+?'/)
+
+  next if syllable.nil?
+  syllable.strip
+  next if syllable.empty? or syllable == ' '
+  syllable = syllable.gsub "\'", ""
+
+  syllables << syllable
+end
+
+syllables = syllables.sort_by { |s| s.length }.reverse
+
 def sanitize_keep_spaces(input)
   input.gsub(/[\?|\!|\,|\.|！|？|，|。|：]/, '')
+end
+
+def sanitize_no_spaces(input)
+  input.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '')
 end
 
 def count_hanzi(input_hanzi)
@@ -58,6 +83,40 @@ def remove?(pinyin)
   false
 end
 
+def string_starts_with_syllable(input, syllables)
+  syllables.each do |syllable|
+    return syllable if input.start_with? syllable
+  end
+
+  return nil
+end
+
+def separate_syllables(pinyin, syllables)
+  pinyin = sanitize_no_spaces(pinyin)
+  pinyin = remove_tones(pinyin)
+  puts pinyin
+  
+  result = ""
+  until pinyin.nil? or pinyin.empty?
+    syllable = string_starts_with_syllable(pinyin, syllables)
+    if syllable.nil?
+      return "OH SHIT ENGLISH!!!!!!!!!!!!"
+    end
+    result += syllable
+    result += " "
+    pinyin.slice!(0, syllable.length)
+  end
+  result
+end
+
+def remove_tones(pinyin)
+  pinyin = pinyin.gsub /[āáǎà]/, 'a'
+  pinyin = pinyin.gsub /[ēéěè]/, 'e'
+  pinyin = pinyin.gsub /[īíǐì]/, 'i'
+  pinyin = pinyin.gsub /[ōóǒò]/, 'o'
+  pinyin = pinyin.gsub /[ūúǔù]/, 'u'
+end
+
 cnt1 = 0
 cnt2 = 0
 cnt3 = 0
@@ -90,8 +149,8 @@ CSV.foreach('seeds.csv') do |line|
   end
 
   spaced_pinyin = Pinyin.t(line[3])
-  puts spaced_pinyin
   spaced_pinyin = sanitize_keep_spaces(spaced_pinyin)
+  spaced_pinyin = separate_syllables(fixed_pinyin, syllables)
   puts spaced_pinyin
 
   CSV.open('seeds2.csv', 'a') do |csv|
@@ -106,4 +165,3 @@ p cnt2
 p cnt3
 p cnt4
 p cnt5
-
