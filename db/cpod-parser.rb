@@ -7,6 +7,11 @@ require 'nokogiri'
 require 'open-uri'
 require 'ting/string'
 
+def numbers_to_spaced_pinyin(input)
+  input = input.gsub(/[\d]/, ' ')
+  input = input.squeeze
+end
+
 file = File.open('file.html')
 doc = Nokogiri::HTML(file) 
 
@@ -15,6 +20,7 @@ doc.css('div.dialogue-list > div').each do |dialogue|
   audio = dialogue.css('div .css_data').text
   hanzi_sentence = ''
   pinyin_sentence = ''
+  spaced_pinyin_sentence = ''
   english_sentence = ''
 
   # cut out some bullshit in the front we don't need to grab the sentence
@@ -35,7 +41,9 @@ doc.css('div.dialogue-list > div').each do |dialogue|
 
         pinyin = entry['onmouseover']
         pinyin = pinyin.split "'"
+        #pinyin_sentence << pinyin[3].pretty_tones
         pinyin_sentence << pinyin[3].pretty_tones
+        spaced_pinyin_sentence << numbers_to_spaced_pinyin(pinyin[3]).downcase
       else
         # it's punctuation.
         hanzi_sentence << entry.text
@@ -58,11 +66,12 @@ doc.css('div.dialogue-list > div').each do |dialogue|
 
   puts hanzi_sentence
   puts pinyin_sentence
+  puts spaced_pinyin_sentence
   puts english_sentence
   puts '---'
 
   CSV.open('scraped.csv', 'a') do |csv|
-    csv << [ARGV[0], audio, english_sentence, hanzi_sentence, pinyin_sentence]
+    csv << [ARGV[0], audio, english_sentence, hanzi_sentence, pinyin_sentence, spaced_pinyin_sentence]
   end
 
 end

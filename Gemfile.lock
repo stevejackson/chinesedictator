@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:stevejackson/ting.git
+  revision: 3da74a722856e0083e9df2e6f5002462e0e447cc
+  specs:
+    ting (0.2.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -196,4 +202,5 @@ DEPENDENCIES
   sass-rails (~> 3.1.4)
   therubyracer
   thin
+  ting!
   uglifier (>= 1.0.3)

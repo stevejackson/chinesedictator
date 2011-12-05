@@ -72,15 +72,13 @@ def fix_pinyin_tones(pinyin)
 end
 
 def remove?(pinyin)
-  bad_pinyin = ['ā', 'āyō', 'āyōu', 'āyiōu', 'āiyō', 'āiyā' 'āi', 'ō', 'āyòu', 'āiyà', 'ài', 'àiya', 'āyā', 'hēi']
+  bad_pinyin = ['a', 'ayo', 'ayou', 'ayiou', 'aiyou', 'aiya', 'ai', 'o', 'ayou', 'aiya', 'hei']
 
   pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '')
+  pinyin = sanitize_no_spaces(pinyin)
+  pinyin = remove_tones(pinyin)
 
-  if bad_pinyin.include? pinyin
-    return true
-  end
-
-  false
+  bad_pinyin.include? pinyin
 end
 
 def string_starts_with_syllable(input, syllables)
@@ -123,17 +121,35 @@ cnt3 = 0
 cnt4 = 0
 cnt5 = 0
 
+lines = []
+
+# import the data from the csv into an array of lines
 CSV.foreach('seeds.csv') do |line|
+  line.each do |i|
+    i.force_encoding 'utf-8'
+  end
+
+  # find out if this is a unique line
+  valid = true
+  lines.each do |existing|
+    # not unique
+    valid = false if sanitize_keep_spaces(existing[3]) == sanitize_keep_spaces(line[3])
+  end
+
+  # should we filter this line out?
+  line[4] = fix_pinyin_tones line[4]
+  valid = false if remove? line[4]
+
+  lines << line if valid
+end
+
+lines.each do |line|
   line.each do |i|
     i.force_encoding 'utf-8'
   end
 
   hanzis = count_hanzi(line[3])
   difficulty = get_difficulty(hanzis) 
-
-  fixed_pinyin = fix_pinyin_tones line[4]
-
-  next if remove? fixed_pinyin
 
   case difficulty
   when 1
@@ -150,13 +166,13 @@ CSV.foreach('seeds.csv') do |line|
 
   spaced_pinyin = Pinyin.t(line[3])
   spaced_pinyin = sanitize_keep_spaces(spaced_pinyin)
-  spaced_pinyin = separate_syllables(fixed_pinyin, syllables)
+  #spaced_pinyin = separate_syllables(fixed_pinyin, syllables)
   puts spaced_pinyin
 
   CSV.open('seeds2.csv', 'a') do |csv|
     difficulty = difficulty.to_s.force_encoding 'utf-8'
 
-    csv << [difficulty, line[1], line[2], line[3], fixed_pinyin, spaced_pinyin]
+    csv << [difficulty, line[1], line[2], line[3], line[4], spaced_pinyin]
   end
 end
 
