@@ -11,10 +11,10 @@ Dictator.prototype.sanitize = function (input, keepSpaces) {
   }
   var sanitized = "";
   if (keepSpaces) {
-    sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|：]/gi, '');
+    sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|、|：]/gi, '');
     sanitized = sanitized.replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
   } else {
-    sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。|：]/gi, '');
+    sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|、|。|：]/gi, '');
   }
   return sanitized.toLowerCase();
 };

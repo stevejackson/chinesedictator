@@ -25,16 +25,16 @@ end
 syllables = syllables.sort_by { |s| s.length }.reverse
 
 def sanitize_keep_spaces(input)
-  input.gsub(/[\?|\!|\,|\.|！|？|，|。|：]/, '')
+  input.gsub(/[\?|\!|\,|\.|！|？|，|、|。|：]/, '')
 end
 
 def sanitize_no_spaces(input)
-  input.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '')
+  input.gsub(/[\?|\!|\,|\.|！|？|，|。|、|：| ]/, '')
 end
 
 def count_hanzi(input_hanzi)
   input_hanzi.force_encoding 'utf-8'
-  no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|，|。|：| ]/, '')
+  no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|、|，|。|：| ]/, '')
   no_spaces.length
 end
 

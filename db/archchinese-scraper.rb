@@ -22,7 +22,7 @@ end
 File.open('syllables.txt', 'w') do |f|
 
   f.print '['
-  f.print "'" + syllables.join(',') + "
+  f.print "'" + syllables.join(',') + "'"
   f.print ']'
 
   f.puts ''
