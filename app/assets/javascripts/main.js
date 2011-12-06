@@ -213,7 +213,6 @@
     var hanzi = $('#question .translation .sentence').first().text();
     $('#notifications #translationEnglish').text(english);
     $('#notifications #translationHanzi').text(hanzi);
-    $('#notifications #instructions').show();
     $('#hint').hide();
   }
 
@@ -224,7 +223,7 @@
     $('#notifications #translationEnglish').text('');
     $('#hint').text('');
 
-    $('#notifications #instructions').hide();
+    $('#instructions #flash').text('');
     $('#progressBar .ui-progressbar-value').stop().animate({width:'0px'}, 100);
   }
 
@@ -268,7 +267,15 @@
   function getNextQuestion(difficulty) {
     if(difficulty == 0) {
       // grab the difficulty from the existing question
-      difficulty = parseInt($('#question .difficulty').text());
+      difficulty = parseInt($('#instructions #difficulty').text());
+    }
+    else {
+      // save the difficulty
+      $('#instructions #difficulty').text(difficulty);
+    }
+
+    if(isNaN(difficulty)) {
+      difficulty = 1;
     }
 
     clearNotificationArea();
@@ -281,7 +288,6 @@
     $('.initialset label').each(function() {
       if($(this).attr('aria-pressed') == 'true') {
         var content = $(this).find('span').text();
-        console.log(content);
         initialsArray.push(content);
       }
     });
@@ -290,7 +296,6 @@
     $('.finalset label').each(function() {
       if($(this).attr('aria-pressed') == 'true') {
         var content = $(this).find('span').text();
-        console.log(content);
         finalsArray.push(content);
       }
     });

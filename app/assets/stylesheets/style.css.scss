@@ -253,6 +253,13 @@ nav {
 #question { display: none; }
 #audioContent { display: block; height: 0; width: 0; }
 
+#instructions {
+  text-align: center;
+  #difficulty {
+    display: none;
+  }
+}
+
 #notifications {
   margin-top: 1em;
   text-align: center;

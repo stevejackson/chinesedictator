@@ -90,8 +90,10 @@
         #hint
         #translationHanzi
         #translationEnglish
-        #instructions
-          %input.next.controls-button{ :type => 'button', :value => "#{t :next}" }
+      #instructions
+        %p#flash.center
+        %input.next.controls-button{ :type => 'button', :value => "#{t :next}" }
+        #difficulty
 
       #question
         = render :partial => '/dictator/question'

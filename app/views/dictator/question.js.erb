@@ -1,4 +1,8 @@
 $('#question').html('<%= escape_javascript(render :partial => "/dictator/question") %>');
 
-hideCompletion();
-newQuestion();
+<% if @question.nil? %>
+  $('#instructions #flash').html('Sorry, we have no entries for the difficulty and syllables you\'ve selected.');
+<% else %>
+  hideCompletion();
+  newQuestion();
+<% end %>
