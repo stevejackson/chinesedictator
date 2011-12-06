@@ -14,7 +14,11 @@ $header-height: 165px;
 $nav-height: 42px;
 
 .clear { clear: both; }
-::selection, ::-moz-selection { background-color: $theme-color-bright; color: black; }
+::selection, ::-moz-selection { 
+  background-color: $theme-color-bright;
+  color: black;
+  @include text-shadow(0 1px 1px white);
+}
 
 // Firefox hacks
 a:focus { outline: none; }
@@ -372,6 +376,8 @@ nav {
 
   #initials { float: left; }
   #finals { float: right; }
+
+  p { margin-bottom: 1em; }
 }
 
 .showHideTutorial { float: left; }

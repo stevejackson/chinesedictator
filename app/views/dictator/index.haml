@@ -8,6 +8,7 @@
           = t(:tutorial).html_safe
 
         #syllables
+          %p.center= t :syllable_instructions
           #initials
             %h2 Initials
             %br
@@ -28,8 +29,7 @@
 
             = render_syllable_list('final')
 
-          .clear
-
+        .clear
 
         %p.showHideTutorial
           %a &#x25B4;&nbsp; Hide tutorial

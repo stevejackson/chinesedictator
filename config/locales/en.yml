@@ -71,4 +71,6 @@ en:
         Once you've successfully completed a dictation, press Enter to move on.</li>
     </ol>
 
-    <p> If you want to study specific syllables that are challenging you, click 'Show syllable filters'. </p>
+    <p> If you want to study specific sounds that are challenging you, click 'Show syllable filters'. </p>
+  syllable_instructions: |
+    To study specific problem sounds (such as 'q' vs 'ch'), select only those. Only questions that contain the selected initials or finals will be prompted.
