@@ -195,7 +195,7 @@
       var translations = [];
 
       $('#question .translation').each(function() {
-        if($(this).find('.language').text() == 'pinyin') {
+        if($(this).find('.language').text() === 'pinyin') {
           translations.push($(this).find('.sentence').text());
         }
       });
@@ -242,7 +242,7 @@
   }
 
   function handlerComplete(event) {
-    if(event.which == 13) {
+    if(event.which === 13) {
       getNextQuestion(0);
     }
   }
@@ -250,7 +250,7 @@
   function handlerIncomplete(event) {
     // ctrl + enter, get a hint
     event.stopPropagation();
-    if(event.which == 10 && event.ctrlKey) {
+    if(event.which === 10 && event.ctrlKey) {
       $('#hint').show();
     }
 
@@ -259,13 +259,13 @@
       $('#hint').hide();
     }
 
-    if(event.which == 13) {
+    if(event.which === 13) {
       playAudio();
     }
   }
 
   function getNextQuestion(difficulty) {
-    if(difficulty == 0) {
+    if(difficulty === 0) {
       // grab the difficulty from the existing question
       difficulty = parseInt($('#instructions #difficulty').text());
     }
@@ -286,7 +286,7 @@
 
     var initialsArray = new Array();
     $('.initialset label').each(function() {
-      if($(this).attr('aria-pressed') == 'true') {
+      if($(this).attr('aria-pressed') === 'true') {
         var content = $(this).find('span').text();
         initialsArray.push(content);
       }
@@ -294,7 +294,7 @@
 
     var finalsArray = new Array();
     $('.finalset label').each(function() {
-      if($(this).attr('aria-pressed') == 'true') {
+      if($(this).attr('aria-pressed') === 'true') {
         var content = $(this).find('span').text();
         finalsArray.push(content);
       }

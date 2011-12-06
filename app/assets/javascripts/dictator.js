@@ -5,6 +5,7 @@ function Dictator() {
   this.completed = false;
 }
 
+// remove unwanted punctuation for comparisons
 Dictator.prototype.sanitize = function (input, keepSpaces) {
   if (input === undefined) {
     input = '';
@@ -19,40 +20,35 @@ Dictator.prototype.sanitize = function (input, keepSpaces) {
   return sanitized.toLowerCase();
 };
 
+// only sanitize up to a given index of a string
 Dictator.prototype.sanitizationsUpToIndex = function (input, index) {
   var before = input.substring(0, index),
     sanitized = this.sanitize(before, false);
   return before.length - sanitized.length;
 };
 
+// find out where the strings are no longer equal
 Dictator.prototype.compareStringsByChar = function (string1, string2) {
   var i = 0,
-    returnArray = new Array(1),
-    furthest = 0,
-    failureIndex = new Array(1);
+    furthest = 0;
 
   if (string1.length === 0 && string2.length > 0) {
-    returnArray[0] = 'false';
-    return returnArray;
+    return 0;
   }
 
   for (i = 0; i < string1.length; i += 1) {
     if (string1.charAt(i) !== string2.charAt(i)) {
-      failureIndex[0] = i;
-      return failureIndex;
+      return i;
     }
     furthest = i;
   }
 
   // if they're correct so far, but don't have enough...
   if (string1.length < string2.length) {
-    failureIndex[0] = furthest + 1;
-    return failureIndex;
+    return furthest + 1;
   }
 
-  returnArray[0] = 'true';
-
-  return returnArray;
+  return true;
 };
 
 // Takes the complete target, and the partial sanitized version.
@@ -74,6 +70,7 @@ Dictator.prototype.matchPartialSanitizedToTarget = function (target, partialSani
   return "";
 };
 
+// Determines the first word that is currently uncomplete, and returns it.
 Dictator.prototype.getHint = function (target, input) {
   var sanitizedTarget = this.sanitize(target, true),
     sanitizedInput = this.sanitize(input, true),
@@ -130,7 +127,7 @@ Dictator.prototype.analyze = function (input) {
     sanitizedSentence = this.sanitize(this.dictations[i], false);
 
     comparison = this.compareStringsByChar(sanitizedInput, sanitizedSentence);
-    if (comparison[0] === 'true') {
+    if (comparison === true) {
       this.failureIndex = sanitizedSentence.length;
       this.completed = true;
       this.dictationTarget = this.dictations[i];
@@ -138,9 +135,8 @@ Dictator.prototype.analyze = function (input) {
       return true;
     }
 
-    comparisonFailureIndex = comparison[0];
-    if (comparisonFailureIndex >= largestFailureIndex) {
-      this.failureIndex = comparisonFailureIndex;
+    if (comparison > largestFailureIndex) {
+      this.failureIndex = comparison;
       largestFailureIndex = this.failureIndex;
       this.dictationTarget = this.dictations[i];
       this.sanitizedTarget = sanitizedSentence;

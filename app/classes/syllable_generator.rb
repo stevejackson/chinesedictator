@@ -1,4 +1,7 @@
 # encoding: utf-8
+#
+# Class for taking a full pinyin syllable and
+# separating it into its initial and final.
 
 module SyllableGenerator
 
