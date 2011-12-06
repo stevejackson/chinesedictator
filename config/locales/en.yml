@@ -53,3 +53,22 @@ en:
 
     The data is scraped from <a href="http://chinesepod.com">ChinesePod</a>
     with permission.
+
+  tutorial: |
+    <p>
+      Hey there! Chinese Dictator will help improve your Chinese listening skills.
+    </p>
+
+    <ol>
+      <li>Press 'Play' to hear an audio clip.</li>
+      <li>
+        Type the pinyin for the audio you heard. For example: "ni3 hao3".
+        You must have correct tones. </li>
+      <li>
+        Use the hint button if you can't figure out the appropriate
+        word or tone.</li>
+      <li>
+        Once you've successfully completed a dictation, press Enter to move on.</li>
+    </ol>
+
+    <p> If you want to study specific syllables that are challenging you, click 'Show syllable filters'. </p>
