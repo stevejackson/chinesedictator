@@ -21,14 +21,14 @@ describe DictatorController do
 
   it "should get only the entries with the given initials" do
     10.times {
-      get :question, { 'difficulty' => 1, 'initials' => ['n'] }
+      get :question, { 'difficulty' => 1, 'initials' => '["n"]' }
       assigns[:question].sentence.should == 'Hello'
     }
   end
 
   it "should get only the entries with the given final" do
     10.times {
-      get :question, { 'difficulty' => 1, 'finals' => ['ai'] }
+      get :question, { 'difficulty' => 1, 'finals' => '["ai"]' }
       assigns[:question].sentence.should == 'Now'
     }
   end
@@ -37,8 +37,8 @@ describe DictatorController do
     10.times {
       get :question, { 
         'difficulty' => 1, 
-        'initials' => ['n', 't', 'h'],
-        'finals' => ['ao'] }
+        'initials' => '["n", "t", "h"]',
+        'finals' => '["ao"]' }
 
       assigns[:question].sentence.should == 'Hello'
     }
@@ -46,8 +46,8 @@ describe DictatorController do
     10.times {
       get :question, { 
         'difficulty' => 1, 
-        'initials' => ['n', 't', 'h'],
-        'finals' => ['ao', 'ai'] }
+        'initials' => '["n", "t", "h"]',
+        'finals' => '["ao", "ai"]' }
 
       sentence = assigns[:question].sentence
       one_is_true = (sentence == 'Hello' or sentence == 'Now')

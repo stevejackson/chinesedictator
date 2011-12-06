@@ -7,9 +7,15 @@ class DictatorController < ApplicationController
   def question
     difficulty = params[:difficulty].to_i
     initials = params[:initials]
-    initials = JSON.parse(initials)
     finals = params[:finals]
-    finals = JSON.parse(finals)
+
+    if not initials.nil?
+      initials = JSON.parse(initials)
+    end
+    if not finals.nil?
+      finals = JSON.parse(finals)
+    end
+
     @question = get_question(difficulty, initials, finals)
 
     respond_to do |format|
