@@ -7,11 +7,12 @@ function Dictator() {
 
 Dictator.prototype.sanitize = function (input, keepSpaces) {
   if (input === undefined) {
-    input = ' ';
+    input = '';
   }
   var sanitized = "";
   if (keepSpaces) {
     sanitized = input.replace(/[\?|\!|\,|\.|！|？|，|。|：]/gi, '');
+    sanitized = sanitized.replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
   } else {
     sanitized = input.replace(/[\?|\!|\,|\.| |！|？|，|。|：]/gi, '');
   }
@@ -85,18 +86,24 @@ Dictator.prototype.getHint = function (target, input) {
 
   // discover where we start to differ from the input.
   for (i = 0; i <= sanitizedInput.length; i += 1) {
-    if (sanitizedTarget.charAt(i) === ' ') {
-      beginningOfWord = i + 1;
+    if (sanitizedTarget.charAt(i - 1) === ' ') {
+      beginningOfWord = i;
     }
 
     partialTarget = sanitizedTarget.substring(0, i);
-    partialInput = sanitizedTarget.substring(0, i);
+    partialInput = sanitizedInput.substring(0, i);
 
     if (partialTarget !== partialInput) {
       break;
     }
-  }
 
+    // If they have all the words right so far, and there's a space coming up
+    // then give them the next word.
+    else if (i == sanitizedInput.length && sanitizedTarget.charAt(i) == ' ') {
+      beginningOfWord = i + 1;
+    }
+  }
+  
   // now let's grab the hint
   sanitizedTarget = sanitizedTarget.substring(beginningOfWord, sanitizedTarget.length);
   endOfWord = sanitizedTarget.indexOf(" ") > 0 ? sanitizedTarget.indexOf(" ") : sanitizedTarget.length;
@@ -119,7 +126,7 @@ Dictator.prototype.analyze = function (input) {
     correctSoFarSanitized;
 
   for (i = 0; i < this.dictations.length; i += 1) {
-    // sanitize the sentence we're comparing it to as well!
+    // sanitize the sentence we're comparing it to as well
     sanitizedSentence = this.sanitize(this.dictations[i], false);
 
     comparison = this.compareStringsByChar(sanitizedInput, sanitizedSentence);
