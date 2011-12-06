@@ -1,28 +1,19 @@
 # encoding: utf-8
+#
+# this script processes seeds.csv into seeds2.csv and does the following:
+# - assigns a difficulty value based on number of hanzi
+# - filters out entries which we don't want (primarily on onomatapoeia)
+# - fixes some misplaced tonal markers from the chinesepod dataset
+# - squeezes (removes extra spaces) pinyin and spaced_pinyin columns
+# - strips (removes spaces at the beginning/end) of pinyin and spaced_pinyin
+# columns
 
 require 'nokogiri'
 require 'open-uri'
 require 'csv' 
 require 'chinese_pinyin'
 
-require '../app/classes/syllable_generator'
-
 doc = Nokogiri::HTML(open('http://www.archchinese.com/chinese_pinyin.html'))
-
-syllables = []
-
-doc.css('.pinyintable tr td a').each do |link|
-  syllable = link['onclick'].slice(/'.+?'/)
-
-  next if syllable.nil?
-  syllable.strip
-  next if syllable.empty? or syllable == ' '
-  syllable = syllable.gsub "\'", ""
-
-  syllables << syllable
-end
-
-syllables = syllables.sort_by { |s| s.length }.reverse
 
 def sanitize_keep_spaces(input)
   input.gsub(/[\?|\!|\,|\.|！|？|，|、|。|：]/, '')
@@ -32,10 +23,8 @@ def sanitize_no_spaces(input)
   input.gsub(/[\?|\!|\,|\.|！|？|，|。|、|：| ]/, '')
 end
 
-def count_hanzi(input_hanzi)
-  input_hanzi.force_encoding 'utf-8'
-  no_spaces = input_hanzi.gsub(/[\?|\!|\,|\.|！|？|、|，|。|：| ]/, '')
-  no_spaces.length
+def count_hanzi(input)
+  sanitize_no_spaces(input).length
 end
 
 def get_difficulty(num_characters)
@@ -74,37 +63,10 @@ end
 def remove?(pinyin)
   bad_pinyin = ['a', 'ayo', 'ayou', 'ayiou', 'aiyou', 'aiya', 'ai', 'o', 'ayou', 'aiya', 'hei']
 
-  pinyin = pinyin.gsub(/[\?|\!|\,|\.|！|？|，|。|：| |"|“]/, '')
   pinyin = sanitize_no_spaces(pinyin)
   pinyin = remove_tones(pinyin)
 
   bad_pinyin.include? pinyin
-end
-
-def string_starts_with_syllable(input, syllables)
-  syllables.each do |syllable|
-    return syllable if input.start_with? syllable
-  end
-
-  return nil
-end
-
-def separate_syllables(pinyin, syllables)
-  pinyin = sanitize_no_spaces(pinyin)
-  pinyin = remove_tones(pinyin)
-  puts pinyin
-  
-  result = ""
-  until pinyin.nil? or pinyin.empty?
-    syllable = string_starts_with_syllable(pinyin, syllables)
-    if syllable.nil?
-      return "OH SHIT ENGLISH!!!!!!!!!!!!"
-    end
-    result += syllable
-    result += " "
-    pinyin.slice!(0, syllable.length)
-  end
-  result
 end
 
 def remove_tones(pinyin)
@@ -113,21 +75,16 @@ def remove_tones(pinyin)
   pinyin = pinyin.gsub /[īíǐì]/, 'i'
   pinyin = pinyin.gsub /[ōóǒò]/, 'o'
   pinyin = pinyin.gsub /[ūúǔù]/, 'u'
+  pinyin = pinyin.gsub /[ǖǘǚǜ]/, 'ü'
 end
 
-cnt1 = 0
-cnt2 = 0
-cnt3 = 0
-cnt4 = 0
-cnt5 = 0
+difficulty_count = [0,0,0,0,0]
 
 lines = []
 
 # import the data from the csv into an array of lines
 CSV.foreach('seeds.csv') do |line|
-  line.each do |i|
-    i.force_encoding 'utf-8'
-  end
+  line.each { |l| l.force_encoding 'utf-8' }
 
   # find out if this is a unique line
   valid = true
@@ -144,40 +101,19 @@ CSV.foreach('seeds.csv') do |line|
 end
 
 lines.each do |line|
-  line.each do |i|
-    i.force_encoding 'utf-8'
-  end
-
   hanzis = count_hanzi(line[3])
   difficulty = get_difficulty(hanzis) 
 
-  case difficulty
-  when 1
-    cnt1 = cnt1 + 1
-  when 2
-    cnt2 = cnt2 + 1
-  when 3
-    cnt3 = cnt3 + 1
-  when 4
-    cnt4 = cnt4 + 1
-  when 5
-    cnt5 = cnt5 + 1
-  end
-
-  spaced_pinyin = Pinyin.t(line[3])
-  spaced_pinyin = sanitize_keep_spaces(spaced_pinyin)
-  #spaced_pinyin = separate_syllables(fixed_pinyin, syllables)
-  puts spaced_pinyin
+  difficulty_count[difficulty-1] += 1 
 
   CSV.open('seeds2.csv', 'a') do |csv|
     difficulty = difficulty.to_s.force_encoding 'utf-8'
 
-    csv << [difficulty, line[1], line[2], line[3], line[4], spaced_pinyin]
+    line[4] = line[4].strip.squeeze
+    line[5] = line[5].strip.squeeze
+
+    csv << [difficulty, line[1], line[2], line[3], line[4], line[5]]
   end
 end
 
-p cnt1
-p cnt2
-p cnt3
-p cnt4
-p cnt5
+difficulty_count.each { |x| puts x }

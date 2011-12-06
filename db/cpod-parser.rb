@@ -1,7 +1,13 @@
 # encoding: utf-8
 #
-# script to parse a chinese pod vocab page to generate a csv with data from that page
-# in a format valid for our seeds.rb file
+# script to parse a chinesepod dialogue page to generate a csv with data from that page
+# process:
+# 1. paste source of dialogue page into file.html
+# 2. bundle exec ruby cpod-parser.rb
+# 3. repeat 1 and 2 as desired
+# 4. look through and delete bad data - it's not 100%.
+# 5. copy the data to seeds.rb
+# 6. ruby process.rb
 
 require 'nokogiri'
 require 'open-uri'
@@ -41,7 +47,6 @@ doc.css('div.dialogue-list > div').each do |dialogue|
 
         pinyin = entry['onmouseover']
         pinyin = pinyin.split "'"
-        #pinyin_sentence << pinyin[3].pretty_tones
         pinyin_sentence << pinyin[3].pretty_tones
         spaced_pinyin_sentence << numbers_to_spaced_pinyin(pinyin[3]).downcase
       else
