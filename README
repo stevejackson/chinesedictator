@@ -1,1 +1,12 @@
 Chinese Dictator is a tool to help improve your Chinese listening skills.
+
+== Tests
+
+There are two sets of tests.
+
+  rspec
+
+for the rails tests. For the javascript, either of these:
+
+  rake jasmine
+  rake jasmine:ci
