@@ -8,11 +8,11 @@ en:
   about: 'ABOUT'
 
   # learn section
-  beginner: 'Beginner'
-  easy: 'Easy'
+  beginner: 'Shorter'
+  easy: 'Short'
   medium: 'Medium'
-  hard: 'Hard'
-  advanced: 'Advanced'
+  hard: 'Long'
+  advanced: 'Longer'
 
   play: 'Play (Enter)'
   hint: 'Hint (Ctrl + Enter)'
