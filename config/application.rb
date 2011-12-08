@@ -45,6 +45,8 @@ module ChineseDictator
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.assets.paths << Rails.root.join("app", "assets", "path")
+
     config.autoload_paths << File.join(Rails.root, "app", "classes")
   end
 end
