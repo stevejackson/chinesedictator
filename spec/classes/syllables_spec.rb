@@ -2,11 +2,10 @@ require 'spec_helper'
 require 'syllable_generator'
 
 describe SyllableGenerator do
-  include SyllableGenerator
 
   before :each do
-    @sui = FullSyllable.new('sui')
-    @shui = FullSyllable.new('shui')
+    @sui = SyllableGenerator::FullSyllable.new('sui')
+    @shui = SyllableGenerator::FullSyllable.new('shui')
   end
 
   it "should have data" do
@@ -28,10 +27,10 @@ describe SyllableGenerator do
   # generate something for every initial.
   # bogus/fake finals - we're not worried about them.
   it "should work comprehensively" do
-    InitialSet.each do |initial|
+    SyllableGenerator::InitialSet.each do |initial|
       fake_final = 'iao'
-      
-      syllable = FullSyllable.new(initial + fake_final)
+
+      syllable = SyllableGenerator::FullSyllable.new(initial + fake_final)
 
       syllable.initial.should == initial
       syllable.final.should == fake_final

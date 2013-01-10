@@ -3,8 +3,8 @@ require 'spec_helper'
 describe DictatorController do
 
   before :each do
-    @question = Factory :question_with_translations
-    @question2 = Factory :question_with_translations_syllable
+    @question = FactoryGirl.create :question_with_translations
+    @question2 = FactoryGirl.create :question_with_translations_syllable
   end
 
   it "should load a question on visiting root" do
@@ -35,17 +35,17 @@ describe DictatorController do
 
   it "should get only the entries with the given initial and final filters" do
     10.times {
-      get :question, { 
-        'difficulty' => 1, 
+      get :question, {
+        'difficulty' => 1,
         'initials' => '["n", "t", "h"]',
         'finals' => '["ao"]' }
 
       assigns[:question].sentence.should == 'Hello'
     }
-      
+
     10.times {
-      get :question, { 
-        'difficulty' => 1, 
+      get :question, {
+        'difficulty' => 1,
         'initials' => '["n", "t", "h"]',
         'finals' => '["ao", "ai"]' }
 

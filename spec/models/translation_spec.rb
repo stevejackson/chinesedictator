@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Translation do
-  
+
   before :each do
     @translation = FactoryGirl.create(:translation, language: 'spaced_pinyin', sentence: 'ni hao')
 
     # create a second translation to ensure we're not generating syllables for it
-    @translation2 = Factory :translation
+    @translation2 = FactoryGirl.create(:translation)
   end
 
   it "should have data" do

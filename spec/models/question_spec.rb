@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Question do
 
   before :each do
-    @question = Factory :question_with_translations
+    @question = FactoryGirl.create(:question_with_translations)
   end
 
   it "should have data" do

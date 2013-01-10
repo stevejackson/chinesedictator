@@ -9,18 +9,18 @@ FactoryGirl.define do
   end
 
   factory :question_with_translations, :parent => :question do |question|
-    question.after_create { |q| 
-      Factory :translation, :question => q
-      Factory :translation, :question => q, :sentence => "你好", :language => 'Hanzi'
-      Factory :translation, :question => q, :sentence => "ni hao", :language => 'spaced_pinyin'
-    }
+    after :create do |q|
+      FactoryGirl.create :translation, :question => q
+      FactoryGirl.create :translation, :question => q, :sentence => "你好", :language => 'Hanzi'
+      FactoryGirl.create :translation, :question => q, :sentence => "ni hao", :language => 'spaced_pinyin'
+    end
   end
 
   factory :question_with_translations_syllable, :parent => :question do |question|
     question.sentence 'Now'
-    question.after_create { |q| 
-      Factory :translation, :question => q, :sentence => "xian zai", :language => 'spaced_pinyin'
-    }
+    after :create do |q|
+      FactoryGirl.create :translation, :question => q, :sentence => "xian zai", :language => 'spaced_pinyin'
+    end
   end
 
   factory :translation do |t|

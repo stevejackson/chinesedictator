@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Syllable do
-  
+
   before :each do
-    @syllable = Factory :syllable
+    @syllable = FactoryGirl.create :syllable
   end
-  
+
   it "should have data" do
     @syllable.initial.should == 'n'
     @syllable.final.should == 'i'

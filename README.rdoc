@@ -1,5 +1,13 @@
 Chinese Dictator is a tool to help improve your Chinese listening skills.
 
+== Setup
+
+Create database.yml.
+Create config/initializers/secret_token.rb
+
+  rake db:create
+  rake db:reset
+
 == Tests
 
 There are two sets of tests.
